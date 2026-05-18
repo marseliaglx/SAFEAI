@@ -1,26 +1,50 @@
 [
   {
+    "slug": "why-ai-implementation-should-start-with-training-your-managers",
+    "title": "Why AI Implementation Should Start With Training Your Managers",
+    "excerpt": "Most organisations roll out AI tools to staff and hope for the best. The ones that get it right do something different first: they train the managers.",
+    "tags": ["AI Strategy"],
+    "date": "2026-05-14",
+    "readTime": "5"
+  },
+  {
     "slug": "where-should-you-actually-start-with-ai-in-your-business",
     "title": "Where Should You Actually Start With AI in Your Business?",
     "excerpt": "The instinct is to start with whatever feels most exciting. That instinct produces a lot of failed AI projects. Here is a better approach — and it is simpler than most guides suggest.",
-    "category": "Getting Started",
+    "tags": ["Getting Started"],
     "date": "2026-05-14",
-    "readTime": "5 min read"
+    "readTime": "5"
   },
   {
     "slug": "four-rules-every-staff-member-needs-before-they-use-ai-at-work",
     "title": "Four Rules Every Staff Member Needs Before They Use AI at Work",
     "excerpt": "Before the policy documents and compliance checklists — four simple habits that stop the most common AI mistakes before they happen.",
-    "category": "Getting Started",
+    "tags": ["Getting Started"],
     "date": "2026-05-14",
-    "readTime": "4 min read"
+    "readTime": "4"
   },
   {
     "slug": "how-to-do-an-ai-security-audit-in-your-business",
     "title": "How to Do an AI Security Audit in Your Business (Without Hiring a Consultant)",
     "excerpt": "A four-part framework for finding out which AI tools your team is really using, what data is flowing through them, and what to do about it.",
-    "category": "Getting Organised",
+    "tags": ["Getting Organised"],
     "date": "2026-05-14",
-    "readTime": "5 min read"
+    "readTime": "5"
+  },
+  {
+    "slug": "the-real-risks-of-using-ai-blindly-a-wake-up-call-for-irish-small-businesses",
+    "title": "The Real Risks of Using AI Blindly: A Wake-Up Call for Irish Small Businesses",
+    "excerpt": "AI can draft emails, design graphics and answer customer queries — but unchecked use creates real risks around hallucinations, privacy, transparency, bias and brand trust.",
+    "tags": ["AI Risk"],
+    "date": "2026-05-05",
+    "readTime": "4"
+  },
+  {
+    "slug": "the-eu-ai-act-what-every-irish-small-business-needs-to-know-without-the-legal-jargon",
+    "title": "The EU AI Act: What Every Irish Small Business Needs to Know (Without the Legal Jargon)",
+    "excerpt": "A practical explanation of how everyday AI use can create obligations for Irish businesses, schools and organisations — and the simple steps to take now.",
+    "tags": ["EU AI Act"],
+    "date": "2026-05-04",
+    "readTime": "4"
   }
 ]

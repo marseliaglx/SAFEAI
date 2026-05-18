@@ -199,7 +199,7 @@ function Navbar({ tweaks }) {
     { label: 'Check your risk', href: '#quiz' },
     { label: 'Services', href: '#services' },
     { label: 'Free Tools', href: '#free-tools' },
-    { label: 'Blog', href: '#blog' },
+    { label: 'Knowledge Base', href: 'blog.html' },
     { label: 'About', href: '#about' },
   ];
 
@@ -719,81 +719,93 @@ function BlogSection() {
     return new Date(d).toLocaleDateString('en-IE', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
-  const blogUrl = 'blog.html';
   const posts = [
+    {
+      url: 'posts/why-ai-implementation-should-start-with-training-your-managers.html',
+      cat: 'AI Strategy',
+      title: 'Why AI Implementation Should Start With Training Your Managers',
+      excerpt: 'Most organisations roll out AI tools to staff and hope for the best. The ones that get it right do something different first: they train the managers.',
+      date: '2026-05-14',
+      time: '5 min',
+    },
+    {
+      url: 'posts/where-should-you-actually-start-with-ai-in-your-business.html',
+      cat: 'Getting Started',
+      title: 'Where Should You Actually Start With AI in Your Business?',
+      excerpt: 'The instinct is to start with whatever feels most exciting. That instinct produces a lot of failed AI projects. Here is a better approach.',
+      date: '2026-05-14',
+      time: '5 min',
+    },
+    {
+      url: 'posts/four-rules-every-staff-member-needs-before-they-use-ai-at-work.html',
+      cat: 'Getting Started',
+      title: 'Four Rules Every Staff Member Needs Before They Use AI at Work',
+      excerpt: 'Before the policy documents and compliance checklists — four simple habits that stop the most common AI mistakes before they happen.',
+      date: '2026-05-14',
+      time: '4 min',
+    },
+    {
+      url: 'posts/how-to-do-an-ai-security-audit-in-your-business.html',
+      cat: 'Getting Organised',
+      title: 'How to Do an AI Security Audit in Your Business (Without Hiring a Consultant)',
+      excerpt: 'A four-part framework for finding out which AI tools your team is really using, what data is flowing through them, and what to do about it.',
+      date: '2026-05-14',
+      time: '5 min',
+    },
     {
       url: 'posts/the-real-risks-of-using-ai-blindly-a-wake-up-call-for-irish-small-businesses.html',
       cat: 'AI Risk',
-      title: 'The real risks of using AI blindly: A wake-up call for Irish small businesses',
+      title: 'The Real Risks of Using AI Blindly: A Wake-Up Call for Irish Small Businesses',
       excerpt: 'AI can draft emails, design graphics and answer customer queries — but unchecked use creates real risks around hallucinations, privacy, transparency, bias and brand trust.',
       date: '2026-05-05',
-      time: '2 min',
-      featured: true,
+      time: '4 min',
     },
     {
       url: 'posts/the-eu-ai-act-what-every-irish-small-business-needs-to-know-without-the-legal-jargon.html',
       cat: 'EU AI Act',
-      title: 'The EU AI Act: what every Irish small business needs to know (without the legal jargon)',
+      title: 'The EU AI Act: What Every Irish Small Business Needs to Know (Without the Legal Jargon)',
       excerpt: 'A practical explanation of how everyday AI use can create obligations for Irish businesses, schools and organisations — and the simple steps to take now.',
       date: '2026-05-04',
       time: '4 min',
-      featured: false,
     },
   ];
-  const featured = posts.find(p => p.featured) || posts[0];
-  const rest = posts.filter(p => p !== featured);
 
   return (
-    <section id="blog" style={{ background: T.cream, padding: '80px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 12 }}>
-          <div>
-            <p className="sa-eyebrow">From the Blog</p>
-            <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', fontWeight: 700, color: T.charcoal }}>Practical AI compliance insights</h2>
-            <p style={{ fontSize: 15, color: T.muted, marginTop: 6 }}>Latest SafeAI articles from Marcela on AI risks, EU AI Act obligations and plain-English compliance for Irish organisations.</p>
-          </div>
-          <a href={blogUrl} style={{ fontSize: 14, color: T.teal, fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
-            View all articles <Icon.Arrow size={14} color={T.teal} />
-          </a>
+    <section id="knowledge-base" style={{ background: T.cream, padding: '80px 24px' }}>
+      <div style={{ maxWidth: 1020, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <p className="sa-eyebrow">Knowledge Base</p>
+          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', fontWeight: 700, color: T.charcoal, marginBottom: 0 }}>Practical AI guides for Irish organisations</h2>
         </div>
 
-        {/* Featured post */}
-        <a href={featured.url} className="sa-card blog-card" style={{ display: 'grid', gridTemplateColumns: '1fr 260px', gap: 32, marginBottom: 20, padding: '28px 32px', alignItems: 'center', textDecoration: 'none' }}>
-          <div>
-            <span className="sa-tag sa-tag-teal" style={{ marginBottom: 12, display: 'inline-block' }}>{featured.cat}</span>
-            <h3 style={{ fontSize: 20, fontWeight: 700, color: T.charcoal, marginBottom: 10, lineHeight: 1.4 }}>{featured.title}</h3>
-            <p style={{ fontSize: 14, color: T.muted, lineHeight: 1.7, marginBottom: 16 }}>{featured.excerpt}</p>
-            <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: T.muted }}><Icon.Calendar />{fmtDate(featured.date)}</span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: T.muted }}><Icon.Clock />{featured.time} read</span>
-              <span style={{ fontSize: 13, color: T.teal, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5 }}>Read article <Icon.Arrow size={12} color={T.teal} /></span>
-            </div>
-          </div>
-          <div style={{
-            minHeight: 150, borderRadius: 10,
-            background: `linear-gradient(135deg, ${T.navy} 0%, ${T.teal} 100%)`,
-            display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-            color: T.white, padding: 20, boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.18)'
-          }}>
-            <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', opacity: 0.74 }}>Latest article</span>
-            <span style={{ fontSize: 28, fontWeight: 700, lineHeight: 1.1 }}>Safe<span style={{ color: '#8FE3ED' }}>AI</span> Blog</span>
-            <span style={{ fontSize: 12, opacity: 0.78 }}>safeai.ie/blog</span>
-          </div>
-        </a>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
-          {rest.map((p, i) => (
-            <a key={i} href={p.url} className="sa-card blog-card" style={{ padding: '20px 22px', textDecoration: 'none' }}>
-              <span className="sa-tag sa-tag-teal" style={{ marginBottom: 10, display: 'inline-block' }}>{p.cat}</span>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: T.charcoal, lineHeight: 1.5, marginBottom: 8 }}>{p.title}</h3>
-              <p style={{ fontSize: 12, color: T.muted, lineHeight: 1.6, marginBottom: 14 }}>{p.excerpt}</p>
-              <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))', gap: 20, marginBottom: 40 }}>
+          {posts.map((p, i) => (
+            <a key={i} href={p.url} className="sa-card blog-card" style={{ padding: '22px 24px', textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
+              <span className="sa-tag sa-tag-teal" style={{ marginBottom: 12, display: 'inline-block', alignSelf: 'flex-start' }}>{p.cat}</span>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: T.charcoal, lineHeight: 1.5, marginBottom: 10, flexGrow: 1 }}>{p.title}</h3>
+              <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.65, marginBottom: 16 }}>{p.excerpt}</p>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginTop: 'auto' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: T.muted }}><Icon.Calendar />{fmtDate(p.date)}</span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: T.muted }}><Icon.Clock />{p.time} read</span>
-                <span style={{ fontSize: 12, color: T.teal, fontWeight: 600 }}>Read →</span>
+                <span style={{ fontSize: 12, color: T.teal, fontWeight: 600, marginLeft: 'auto' }}>Read →</span>
               </div>
             </a>
           ))}
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <a href="blog.html" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            background: T.navy, color: T.white,
+            fontFamily: 'inherit', fontWeight: 700, fontSize: 15,
+            padding: '14px 32px', borderRadius: 8, textDecoration: 'none',
+            transition: 'opacity 0.15s',
+          }}
+          onMouseOver={e => e.currentTarget.style.opacity = '0.85'}
+          onMouseOut={e => e.currentTarget.style.opacity = '1'}
+          >
+            Browse all guides <Icon.Arrow size={14} color={T.white} />
+          </a>
         </div>
       </div>
     </section>
@@ -922,8 +934,7 @@ function Footer() {
     { label: 'Services', href: '#services' },
     { label: 'Free Tools', href: '#free-tools' },
     { label: 'Guides', href: '#guides' },
-    { label: 'Blog', href: '#blog' },
-    { label: 'Blog', href: 'blog.html' },
+    { label: 'Knowledge Base', href: 'blog.html' },
     { label: 'About', href: '#about' },
     { label: 'FAQ', href: 'faq.html' },
     { label: 'Why Train?', href: 'why-train.html' },
