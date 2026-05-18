@@ -901,11 +901,12 @@ function BlogSection() {
 /* ── About Section ── */
 function AboutSection() {
   const creds = [
-    '5 years in the European Parliament',
-    '15 years at Microsoft and VMware',
-    "Master's in EU Legal System",
-    'AI in Business & Digital Transformation',
-    'Bilingual — English and Polish',
+    { label: '5 years in the European Parliament' },
+    { label: "Master's in Public Administration (EU Legal System)" },
+    { label: 'AI in Business — Linköping University, Sweden' },
+    { label: 'Digital Transformation — Bologna University, Italy' },
+    { label: 'Based in Cork, Ireland' },
+    { label: 'Bilingual — English & Polish' },
   ];
   return (
     <section id="about" style={{ background: T.white, padding: '80px 24px' }}>
@@ -918,7 +919,7 @@ function AboutSection() {
             {creds.map((c, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                 <Icon.Check size={18} />
-                <span style={{ fontSize: 13, color: T.charcoal, lineHeight: 1.5 }}>{c}</span>
+                <span style={{ fontSize: 13, color: T.charcoal, lineHeight: 1.5 }}>{c.label}</span>
               </div>
             ))}
           </div>
@@ -926,18 +927,19 @@ function AboutSection() {
         <div>
           <p className="sa-eyebrow">About Marcela</p>
           <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: T.charcoal, marginBottom: 20, textWrap: 'balance' }}>
-            Making complex things make sense to ordinary people.
+            Making complex regulation make sense to the people it actually affects.
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16, fontSize: 15, color: T.ink, lineHeight: 1.85 }}>
-            <p>I started in the European Parliament, where I learned that regulations only work when people can actually understand them. I then spent fifteen years at Microsoft and VMware, translating complexity into something teams could act on.</p>
+            <p>I spent five years in the European Parliament, where I learned something that still shapes how I work: regulation only delivers its purpose when ordinary people can understand and act on it. The EU AI Act is no different — it exists for a reason, but it will only work if small organisations can make sense of what it actually asks of them.</p>
             <blockquote style={{ borderLeft: `4px solid ${T.teal}`, paddingLeft: 20, fontStyle: 'italic', fontWeight: 300, fontSize: 16, color: T.charcoal, lineHeight: 1.75 }}>
-              "AI is powerful. Used responsibly, it can genuinely help small organisations. Used carelessly, it can quietly risk everything — your data, your customer trust, your reputation."
+              "AI is powerful. Used responsibly, it can genuinely help small organisations. Used carelessly, it can quietly risk everything — your data, your customers' trust, your reputation."
             </blockquote>
-            <p>I hold a Master's in Public Administration in the EU Legal System and am completing programmes in AI in Business and Digital Transformation. I run SafeAI from Cork, supporting businesses, schools, and community organisations across Ireland.</p>
+            <p>I hold a Master's in Public Administration with a focus on the EU Legal System, and have recently completed micro-credentials in AI in Business (Linköping University, Sweden) and Digital Transformation (Bologna University, Italy). I am not a lawyer — and for most of the people I work with, that is an advantage. I explain what the Act means in practice, not in a legal brief.</p>
+            <p>I run SafeAI from Cork, working with businesses, schools, and community organisations across Ireland. The goal is always the same: leave your team with something they can actually use the next morning.</p>
             <p style={{ fontSize: 13, fontStyle: 'italic', color: T.teal }}>No jargon. No upselling. Practical guidance you can actually use.</p>
           </div>
           <div style={{ marginTop: 28, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#booking" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 26px' }}>Book a call</a>
+            <a href="#booking" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 26px' }}>Book a call with Marcela</a>
             <a href="#free-tools" className="sa-btn-ghost" style={{ fontSize: 14, border: `1.5px solid ${T.teal}`, borderRadius: 6, padding: '13px 22px' }}>Download a free guide</a>
           </div>
         </div>
