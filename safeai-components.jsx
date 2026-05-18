@@ -196,10 +196,10 @@ function Navbar({ tweaks }) {
   }, []);
 
   const links = [
-    { label: 'Check your risk', href: '#quiz' },
     { label: 'Services', href: '#services' },
     { label: 'Free Tools', href: '#free-tools' },
     { label: 'Knowledge Base', href: 'blog.html' },
+    { label: 'FAQ', href: 'faq.html' },
     { label: 'About', href: '#about' },
   ];
 
@@ -718,11 +718,12 @@ function OfficialResourcesSection() {
   const tools = [
     {
       title: 'AI Act Explorer',
-      desc: 'Browse the full text of the EU AI Act — every chapter, annex and recital — in an intuitive, searchable interface built by the EU AI Office.',
+      reveal: 'Understand exactly which obligations apply to your organisation — before a regulator does.',
+      desc: 'Browse the full text of the EU AI Act in a searchable interface built by the EU AI Office. Find the articles that apply to your sector and role.',
       cta: 'Open Explorer',
       url: 'https://ai-act-service-desk.ec.europa.eu/en',
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
           <polyline points="14 2 14 8 20 8"/>
           <circle cx="11" cy="14" r="3"/>
@@ -732,11 +733,13 @@ function OfficialResourcesSection() {
     },
     {
       title: 'Compliance Checker',
-      desc: 'Evaluate whether your AI systems and general-purpose AI models meet the requirements set out in the EU AI Act — direct from the Commission.',
-      cta: 'Check Compliance',
+      reveal: 'Most organisations find gaps they did not expect. Knowing about them is the first step to fixing them.',
+      desc: 'The official Commission tool that evaluates whether your AI systems meet the EU AI Act requirements. Takes 10 minutes. The results are often surprising.',
+      cta: 'Check Your Compliance',
       url: 'https://ai-act-service-desk.ec.europa.eu/en',
+      highlight: true,
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
           <polyline points="14 2 14 8 20 8"/>
           <polyline points="9 15 11 17 15 13"/>
@@ -745,11 +748,12 @@ function OfficialResourcesSection() {
     },
     {
       title: 'AI Act Service Desk',
-      desc: 'Submit questions directly to EU AI Office experts — available in your own language. The authoritative source for official AI Act guidance.',
+      reveal: 'Official answers to official questions — but guidance alone does not turn compliance into practice.',
+      desc: 'Submit questions directly to EU AI Office experts in your own language. Use this for regulatory clarifications, then use SafeAI to translate the answers into action.',
       cta: 'Contact the Desk',
       url: 'https://ai-act-service-desk.ec.europa.eu/en',
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
         </svg>
       ),
@@ -757,19 +761,28 @@ function OfficialResourcesSection() {
   ];
 
   return (
-    <section id="eu-resources" style={{ background: '#EEF2FF', padding: '80px 24px' }}>
+    <section id="eu-resources" style={{ background: '#F4F6FA', padding: '80px 24px' }}>
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p className="sa-eyebrow" style={{ color: '#6366f1' }}>Official EU Tools</p>
-          <h2 style={{ fontSize: 'clamp(24px, 3vw, 34px)', fontWeight: 700, color: T.charcoal, marginBottom: 10 }}>Free tools from the EU AI Office</h2>
-          <p style={{ fontSize: 15, color: T.muted, maxWidth: 520, margin: '0 auto' }}>Published by the European Commission. Use these alongside SafeAI's guides to navigate the AI Act with confidence.</p>
+          <p className="sa-eyebrow" style={{ color: '#6366f1' }}>Free tools from the EU AI Office</p>
+          <h2 style={{ fontSize: 'clamp(24px, 3vw, 34px)', fontWeight: 700, color: T.charcoal, marginBottom: 12 }}>See where you stand — then close the gaps</h2>
+          <p style={{ fontSize: 15, color: T.muted, maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>The European Commission publishes these tools for free. We recommend them — because once you see what the AI Act actually requires of your organisation, the next step becomes obvious.</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: 20, marginBottom: 32 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: 20, marginBottom: 40 }}>
           {tools.map((t, i) => (
-            <div key={i} className="sa-card" style={{ display: 'flex', flexDirection: 'column', borderTop: '3px solid #6366f1' }}>
-              <div style={{ color: '#6366f1', marginBottom: 16 }}>{t.icon}</div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: T.charcoal, marginBottom: 8 }}>{t.title}</h3>
+            <div key={i} className="sa-card" style={{ display: 'flex', flexDirection: 'column', borderTop: `3px solid ${t.highlight ? T.teal : '#6366f1'}`, position: 'relative' }}>
+              {t.highlight && (
+                <div style={{
+                  position: 'absolute', top: -1, right: 16,
+                  background: T.teal, color: '#fff',
+                  fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+                  padding: '3px 10px', borderRadius: '0 0 6px 6px',
+                }}>Start here</div>
+              )}
+              <div style={{ color: t.highlight ? T.teal : '#6366f1', marginBottom: 14 }}>{t.icon}</div>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: T.charcoal, marginBottom: 6 }}>{t.title}</h3>
+              <p style={{ fontSize: 13, fontStyle: 'italic', color: T.ink, lineHeight: 1.6, marginBottom: 10 }}>{t.reveal}</p>
               <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.7, marginBottom: 20, flex: 1 }}>{t.desc}</p>
               <a
                 href={t.url}
@@ -777,13 +790,14 @@ function OfficialResourcesSection() {
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6,
-                  fontSize: 13, fontWeight: 700, color: '#6366f1',
+                  fontSize: 13, fontWeight: 700,
+                  color: t.highlight ? T.teal : '#6366f1',
                   textDecoration: 'none', alignSelf: 'flex-start',
-                  border: '1.5px solid #6366f1', borderRadius: 6,
+                  border: `1.5px solid ${t.highlight ? T.teal : '#6366f1'}`, borderRadius: 6,
                   padding: '8px 14px', transition: 'background 0.15s, color 0.15s',
                 }}
-                onMouseOver={e => { e.currentTarget.style.background = '#6366f1'; e.currentTarget.style.color = '#fff'; }}
-                onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#6366f1'; }}
+                onMouseOver={e => { e.currentTarget.style.background = t.highlight ? T.teal : '#6366f1'; e.currentTarget.style.color = '#fff'; }}
+                onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = t.highlight ? T.teal : '#6366f1'; }}
               >
                 {t.cta} <Icon.Arrow size={12} color="currentColor" />
               </a>
@@ -791,8 +805,36 @@ function OfficialResourcesSection() {
           ))}
         </div>
 
-        <p style={{ textAlign: 'center', fontSize: 12, color: T.muted }}>
-          These are external tools published by the European Commission. SafeAI is not affiliated with the EU AI Office.
+        <div style={{
+          background: T.navy,
+          borderRadius: 14,
+          padding: '32px 36px',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap',
+        }}>
+          <div>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(143,227,237,0.8)', marginBottom: 8 }}>What comes next</p>
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Found gaps? That is exactly what SafeAI is for.</h3>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', maxWidth: 480, lineHeight: 1.7 }}>These tools tell you what the law requires. SafeAI turns that into practical training and a clear action plan — so your team knows what to do and you can demonstrate compliance with confidence.</p>
+          </div>
+          <a
+            href="#booking"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: T.teal, color: '#fff',
+              fontFamily: 'inherit', fontWeight: 700, fontSize: 15,
+              padding: '14px 24px', borderRadius: 8,
+              textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
+              transition: 'opacity 0.15s',
+            }}
+            onMouseOver={e => { e.currentTarget.style.opacity = '0.88'; }}
+            onMouseOut={e => { e.currentTarget.style.opacity = '1'; }}
+          >
+            Book a free call with Marcela <Icon.Arrow size={14} color="#fff" />
+          </a>
+        </div>
+
+        <p style={{ textAlign: 'center', fontSize: 12, color: T.muted, marginTop: 20 }}>
+          External tools published by the European Commission. SafeAI is not affiliated with the EU AI Office.
         </p>
       </div>
     </section>
