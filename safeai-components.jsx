@@ -1112,10 +1112,18 @@ function Footer() {
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24, display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-          {['© 2026 SafeAI','marcela@safeai.ie','General information, not legal advice.','Privacy','Terms','Cookies'].map((item, i) => (
+          {[
+            { text: '© 2026 SafeAI' },
+            { text: 'General information, not legal advice.' },
+            { text: 'Privacy Policy', href: 'privacy.html' },
+            { text: 'Terms', href: 'terms.html' },
+          ].map((item, i) => (
             <React.Fragment key={i}>
               {i > 0 && <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 11 }}>·</span>}
-              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{item}</span>
+              {item.href
+                ? <a href={item.href} style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'color 0.15s' }} onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}>{item.text}</a>
+                : <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{item.text}</span>
+              }
             </React.Fragment>
           ))}
         </div>
@@ -1179,7 +1187,7 @@ function CookieBanner() {
   return (
     <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 500, background: T.navy, padding: '14px 24px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', boxShadow: '0 -4px 20px rgba(0,0,0,0.2)' }}>
       <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, flex: 1, margin: 0 }}>
-        We use essential cookies to keep this site working. By continuing you agree to our <a href="#" style={{ color: T.teal, textDecoration: 'none' }}>cookie policy</a>.
+        We use essential cookies to keep this site working. By continuing you agree to our <a href="privacy.html" style={{ color: T.teal, textDecoration: 'none' }}>Privacy Policy</a>.
       </p>
       <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
         <button onClick={accept} className="sa-btn-primary" style={{ fontSize: 13, padding: '9px 20px' }}>Accept</button>
