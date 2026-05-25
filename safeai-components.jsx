@@ -1,181 +1,206 @@
 // SafeAI — shared components, tokens, icons
 // Exported to window at bottom
 
-/* ── Tokens ── */
+/* ── Design tokens ── */
 const T = {
-  teal:       '#1B9AAA',
-  tealLight:  '#E6F4F6',
-  tealDark:   '#147a87',
-  navy:       '#1B3A6B',
-  navyDark:   '#122849',
-  charcoal:   '#3F4B56',
-  ink:        '#2D3640',
-  muted:      '#7A8590',
-  cream:      '#F4F7F9',
-  white:      '#FFFFFF',
+  paper:     '#FAF7F2',
+  paperWarm: '#F2EDE2',
+  ink:       '#0F2A44',
+  inkSoft:   '#2A4360',
+  sage:      '#4F7864',
+  sageDark:  '#3D5E4F',
+  terra:     '#C66B3D',
+  terraDark: '#A2552E',
+  grey:      '#6B6F76',
+  line:      '#E5E0D6',
+  white:     '#FFFFFF',
+  // legacy aliases kept for BookingModal / CookieBanner / WhatsApp
+  navy:      '#0F2A44',
+  teal:      '#4F7864',
+  tealDark:  '#3D5E4F',
+  tealLight: '#EEF4F0',
+  charcoal:  '#0F2A44',
+  muted:     '#6B6F76',
+  cream:     '#FAF7F2',
 };
 
 /* ── Formspree email submission ── */
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // replace at formspree.io after creating a free form
+const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
 function submitEmail(email, source) {
   if (!email || FORMSPREE_ID === 'YOUR_FORMSPREE_ID') return Promise.resolve();
   return fetch('https://formspree.io/f/' + FORMSPREE_ID, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, source: source }),
-  }).catch(function() {});
+    body: JSON.stringify({ email, source }),
+  }).catch(() => {});
 }
 
-/* ── Base styles injected once ── */
+/* ── CSS variables + base styles injected once ── */
 if (!document.getElementById('safeai-base')) {
   const s = document.createElement('style');
   s.id = 'safeai-base';
   s.textContent = `
+    :root {
+      --paper:      #FAF7F2;
+      --paper-warm: #F2EDE2;
+      --ink:        #0F2A44;
+      --ink-soft:   #2A4360;
+      --sage:       #4F7864;
+      --sage-dark:  #3D5E4F;
+      --terra:      #C66B3D;
+      --terra-dark: #A2552E;
+      --grey:       #6B6F76;
+      --line:       #E5E0D6;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: 'Poppins', sans-serif; color: ${T.ink}; background: ${T.white}; }
-    :focus-visible { outline: 2px solid ${T.teal}; outline-offset: 2px; }
+    body { font-family: 'Hanken Grotesk', sans-serif; color: var(--ink); background: var(--paper); }
+    h1, h2, h3, h4, h5 { font-family: 'Fraunces', serif; font-weight: 600; line-height: 1.2; }
+    :focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+
+    .sa-kicker {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 12px; font-weight: 400; letter-spacing: 0.05em;
+      color: var(--terra); margin-bottom: 16px; display: block;
+    }
 
     .sa-btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: ${T.teal}; color: #fff; font-family: 'Poppins', sans-serif;
-      font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: 6px;
-      border: none; cursor: pointer; text-decoration: none; transition: background 0.18s, transform 0.12s;
-      line-height: 1;
+      background: var(--terra); color: #fff; font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: 4px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.18s, transform 0.12s; line-height: 1;
     }
-    .sa-btn-primary:hover { background: ${T.tealDark}; transform: translateY(-1px); }
+    .sa-btn-primary:hover { background: var(--terra-dark); transform: translateY(-1px); }
 
     .sa-btn-outline {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: transparent; color: ${T.white}; font-family: 'Poppins', sans-serif;
-      font-weight: 600; font-size: 15px; padding: 13px 28px; border-radius: 6px;
-      border: 2px solid rgba(255,255,255,0.55); cursor: pointer; text-decoration: none;
-      transition: border-color 0.18s, background 0.18s;
+      background: transparent; color: var(--ink); font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 600; font-size: 15px; padding: 13px 28px; border-radius: 4px;
+      border: 2px solid var(--line); cursor: pointer; text-decoration: none;
+      transition: border-color 0.18s;
     }
-    .sa-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .sa-btn-outline:hover { border-color: var(--ink); }
 
     .sa-btn-ghost {
       display: inline-flex; align-items: center; gap: 6px;
-      background: transparent; color: ${T.teal}; font-family: 'Poppins', sans-serif;
+      background: transparent; color: var(--terra); font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 500; font-size: 14px; border: none; cursor: pointer; text-decoration: none;
       transition: color 0.15s;
     }
-    .sa-btn-ghost:hover { color: ${T.tealDark}; }
+    .sa-btn-ghost:hover { color: var(--terra-dark); }
 
-    .sa-card {
-      background: ${T.white}; border-radius: 10px;
-      border: 1.5px solid #e0e8ed; padding: 24px;
-    }
-    .sa-card-teal { border-left: 4px solid ${T.teal}; }
-
-    .sa-tag {
-      display: inline-block; padding: 3px 10px; border-radius: 20px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
-    }
-    .sa-tag-teal { background: ${T.tealLight}; color: ${T.teal}; }
-    .sa-tag-navy { background: rgba(27,58,107,0.1); color: ${T.navy}; }
-    .sa-tag-white { background: rgba(255,255,255,0.15); color: #fff; }
-
-    .sa-eyebrow {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: ${T.teal}; margin-bottom: 10px;
-    }
+    .sa-section { padding: 80px 24px; }
+    @media (max-width: 768px) { .sa-section { padding: 56px 24px; } }
+    .sa-max { max-width: 1180px; margin: 0 auto; }
 
     .sa-input {
-      flex: 1; padding: 13px 16px; border-radius: 6px;
-      border: 1.5px solid #d0dce4; background: ${T.white};
-      font-family: 'Poppins', sans-serif; font-size: 14px; color: ${T.ink};
+      flex: 1; padding: 13px 16px; border-radius: 4px;
+      border: 1.5px solid var(--line); background: var(--paper);
+      font-family: 'Hanken Grotesk', sans-serif; font-size: 14px; color: var(--ink);
       transition: border-color 0.15s;
     }
-    .sa-input::placeholder { color: ${T.muted}; }
-    .sa-input:focus { outline: none; border-color: ${T.teal}; }
+    .sa-input::placeholder { color: var(--grey); }
+    .sa-input:focus { outline: none; border-color: var(--terra); }
 
-    /* Smooth section transitions */
-    section { position: relative; }
+    /* FAQ details/summary — native no-JS accordions */
+    details.faq-item { border-bottom: 1px solid var(--line); }
+    details.faq-item summary {
+      cursor: pointer; padding: 20px 0; list-style: none;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 600;
+      color: var(--ink); line-height: 1.5;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after {
+      content: '+'; flex-shrink: 0; font-size: 22px; font-weight: 300;
+      color: var(--terra); font-family: 'Fraunces', serif; font-style: italic;
+      transition: transform 0.22s; line-height: 1;
+    }
+    details.faq-item[open] summary::after { transform: rotate(45deg); }
+    details.faq-item .faq-body {
+      padding: 0 48px 20px 0; font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 14px; color: var(--ink-soft); line-height: 1.85;
+    }
 
-    /* Quiz answer hover */
-    .quiz-opt:hover { border-color: ${T.teal} !important; background: ${T.tealLight} !important; }
-
-    /* Blog card hover */
-    .blog-card:hover { box-shadow: 0 6px 24px rgba(27,58,107,0.10); transform: translateY(-2px); }
+    /* Blog card */
     .blog-card { transition: box-shadow 0.2s, transform 0.2s; }
+    .blog-card:hover { box-shadow: 0 6px 24px rgba(15,42,68,0.08); transform: translateY(-2px); }
 
-    /* FAQ item */
-    .faq-item { border-bottom: 1px solid #e8edf2; }
-    .faq-q { cursor: pointer; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .faq-q:hover .faq-chevron { color: ${T.teal}; }
-    .faq-chevron { transition: transform 0.22s; flex-shrink: 0; }
-    .faq-a { overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
-
-    /* Scrollbar subtle */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #c8d6de; border-radius: 3px; }
+    /* Quiz option */
+    .quiz-opt:hover { border-color: var(--terra) !important; background: #FAF0E8 !important; }
 
     /* Mobile nav */
-    .sa-nav-links { display: flex; align-items: center; gap: 32px; }
-    .sa-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: ${T.charcoal}; }
+    .sa-nav-links { display: flex; align-items: center; gap: 28px; }
+    .sa-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--ink); }
     .sa-mobile-menu { display: none; }
     @media (max-width: 860px) {
       .sa-nav-links { display: none; }
       .sa-hamburger { display: flex; align-items: center; justify-content: center; }
-      .sa-mobile-menu { display: block; position: fixed; top: 88px; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid #e8edf2; padding: 20px 24px 28px; z-index: 99; }
-      .sa-mobile-link { display: block; padding: 13px 0; font-size: 16px; font-weight: 500; color: ${T.charcoal}; text-decoration: none; border-bottom: 1px solid #f0f4f7; }
+      .sa-mobile-menu {
+        display: block; position: fixed; top: 64px; left: 0; right: 0;
+        background: rgba(250,247,242,0.98); backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line); padding: 20px 24px 28px; z-index: 99;
+      }
+      .sa-mobile-link {
+        display: block; padding: 13px 0; font-size: 16px; font-weight: 500;
+        color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);
+        font-family: 'Hanken Grotesk', sans-serif;
+      }
       .sa-mobile-link:last-child { border-bottom: none; }
     }
+
+    /* About section responsive */
+    .about-grid { display: flex; gap: 56px; align-items: flex-start; flex-wrap: wrap; }
+    .about-photo { flex: 0 0 260px; min-width: 200px; max-width: 300px; }
+    .about-text { flex: 1 1 380px; min-width: 0; }
+
+    /* Footer grid responsive */
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
   `;
   document.head.appendChild(s);
 }
 
 /* ── Simple SVG icons ── */
 const Icon = {
-  Check: ({ size = 16, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="8" r="8" fill={T.teal} opacity="0.15"/>
-      <path d="M4.5 8.5l2.5 2.5 4.5-5" stroke={T.teal} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  ),
   Arrow: ({ size = 16, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path d="M3 8h10M9 4l4 4-4 4" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
-  Plus: ({ open }) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ transition: 'transform 0.22s', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-      <path d="M10 4v12M4 10h12" stroke={T.teal} strokeWidth="2" strokeLinecap="round"/>
+  Check: ({ size = 16 }) => (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="8" fill={T.terra} opacity="0.12"/>
+      <path d="M4.5 8.5l2.5 2.5 4.5-5" stroke={T.terra} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   CheckCircle: ({ size = 48 }) => (
-    <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="24" fill={T.tealLight}/>
-      <path d="M14 25l7 7 13-14" stroke={T.teal} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <circle cx="24" cy="24" r="24" fill="#EEF4F0"/>
+      <path d="M14 25l7 7 13-14" stroke={T.sageDark} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   Calendar: () => (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <rect x="1" y="2" width="12" height="11" rx="2" stroke={T.muted} strokeWidth="1.2"/>
-      <path d="M1 6h12M5 1v2M9 1v2" stroke={T.muted} strokeWidth="1.2" strokeLinecap="round"/>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <rect x="1" y="2" width="12" height="11" rx="2" stroke={T.grey} strokeWidth="1.2"/>
+      <path d="M1 6h12M5 1v2M9 1v2" stroke={T.grey} strokeWidth="1.2" strokeLinecap="round"/>
     </svg>
   ),
   Clock: () => (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <circle cx="7" cy="7" r="6" stroke={T.muted} strokeWidth="1.2"/>
-      <path d="M7 4v3.5l2 2" stroke={T.muted} strokeWidth="1.2" strokeLinecap="round"/>
-    </svg>
-  ),
-  LinkedIn: ({ size = 18, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-      <circle cx="4" cy="4" r="2" stroke={color} strokeWidth="1.8"/>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <circle cx="7" cy="7" r="6" stroke={T.grey} strokeWidth="1.2"/>
+      <path d="M7 4v3.5l2 2" stroke={T.grey} strokeWidth="1.2" strokeLinecap="round"/>
     </svg>
   ),
   Facebook: ({ size = 18, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   Instagram: ({ size = 18, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <rect x="2" y="2" width="20" height="20" rx="5" stroke={color} strokeWidth="1.8"/>
       <circle cx="12" cy="12" r="4" stroke={color} strokeWidth="1.8"/>
       <circle cx="17.5" cy="6.5" r="1" fill={color}/>
@@ -184,7 +209,7 @@ const Icon = {
 };
 
 /* ── Navbar ── */
-function Navbar({ tweaks }) {
+function Navbar() {
   const R = React;
   const [scrolled, setScrolled] = R.useState(false);
   const [mobileOpen, setMobileOpen] = R.useState(false);
@@ -196,363 +221,317 @@ function Navbar({ tweaks }) {
   }, []);
 
   const links = [
-    { label: 'Services', href: '#services' },
-    { label: 'Free Tools', href: '#free-tools' },
-    { label: 'Knowledge Base', href: 'blog.html' },
-    { label: 'FAQ', href: 'faq.html' },
+    { label: 'Products', href: '#products' },
+    { label: "Who it's for", href: '#audience' },
     { label: 'About', href: '#about' },
+    { label: 'FAQ', href: '#faq' },
   ];
 
-  function closeMobile() { setMobileOpen(false); }
-
   return (
-    <nav style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled || mobileOpen ? 'rgba(255,255,255,0.97)' : 'transparent',
-      backdropFilter: scrolled || mobileOpen ? 'blur(8px)' : 'none',
-      boxShadow: scrolled ? '0 1px 12px rgba(27,58,107,0.08)' : 'none',
-      transition: 'background 0.3s, box-shadow 0.3s',
-    }}>
-      <div style={{ maxWidth: 1120, margin: '0 auto', padding: '0 24px', minHeight: 88, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
-        {/* Logo */}
-        <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img
-            src="safeai-logo.svg"
-            alt="SafeAI logo"
-            style={{ height: 58, width: 'auto', display: 'block' }}
-          />
-        </a>
-
-        {/* Desktop links */}
-        <div className="sa-nav-links">
-          {links.map(function(l) { return (
-            <a key={l.label} href={l.href}
-              style={{ fontSize: 14, fontWeight: 500, color: T.charcoal, textDecoration: 'none', transition: 'color 0.15s' }}
-              onMouseEnter={function(e) { e.target.style.color = T.teal; }}
-              onMouseLeave={function(e) { e.target.style.color = T.charcoal; }}
-            >{l.label}</a>
-          ); })}
-          <a href="#booking" className="sa-btn-primary" style={{ fontSize: 14, padding: '10px 20px' }}>
-            Book a call
+    <header>
+      <nav style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+        background: scrolled || mobileOpen ? 'rgba(250,247,242,0.97)' : 'transparent',
+        backdropFilter: scrolled || mobileOpen ? 'blur(8px)' : 'none',
+        borderBottom: scrolled ? `1px solid ${T.line}` : 'none',
+        transition: 'background 0.3s, border-color 0.3s',
+      }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 24px', minHeight: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
+          <a href="/" aria-label="SafeAI home" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+            <img src="safeai-logo.svg" alt="SafeAI" style={{ height: 40, width: 'auto' }} />
           </a>
+
+          <div className="sa-nav-links" role="list">
+            {links.map(l => (
+              <a key={l.label} href={l.href} role="listitem"
+                style={{ fontSize: 14, fontWeight: 500, color: T.inkSoft, textDecoration: 'none', transition: 'color 0.15s', fontFamily: "'Hanken Grotesk', sans-serif" }}
+                onMouseEnter={e => e.currentTarget.style.color = T.terra}
+                onMouseLeave={e => e.currentTarget.style.color = T.inkSoft}>
+                {l.label}
+              </a>
+            ))}
+            <a href="/pl/" lang="pl" aria-label="Wersja polska" style={{
+              fontSize: 12, fontWeight: 700, color: T.terra, fontFamily: "'Hanken Grotesk', sans-serif",
+              border: `1.5px solid ${T.terra}`, borderRadius: 20, padding: '5px 14px',
+              textDecoration: 'none', letterSpacing: '0.04em', transition: 'background 0.15s, color 0.15s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = T.terra; e.currentTarget.style.color = '#fff'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = T.terra; }}>
+              Polski
+            </a>
+          </div>
+
+          <button className="sa-hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation menu" aria-expanded={mobileOpen}>
+            {mobileOpen
+              ? <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M17 5L5 17M5 5l12 12" stroke={T.ink} strokeWidth="2" strokeLinecap="round"/></svg>
+              : <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 7h16M3 11h16M3 15h16" stroke={T.ink} strokeWidth="2" strokeLinecap="round"/></svg>
+            }
+          </button>
         </div>
 
-        {/* Hamburger (mobile only) */}
-        <button className="sa-hamburger" onClick={function() { setMobileOpen(!mobileOpen); }} aria-label="Toggle menu">
-          {mobileOpen ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke={T.charcoal} strokeWidth="2" strokeLinecap="round"/></svg>
-          ) : (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 8h18M3 12h18M3 16h18" stroke={T.charcoal} strokeWidth="2" strokeLinecap="round"/></svg>
-          )}
-        </button>
-      </div>
-
-      {/* Mobile dropdown */}
-      {mobileOpen && (
-        <div className="sa-mobile-menu">
-          {links.map(function(l) { return (
-            <a key={l.label} href={l.href} className="sa-mobile-link" onClick={closeMobile}>{l.label}</a>
-          ); })}
-          <a href="#booking" className="sa-btn-primary" style={{ display: 'inline-flex', marginTop: 16, fontSize: 15, padding: '13px 24px' }} onClick={closeMobile}>Book a call</a>
-        </div>
-      )}
-    </nav>
+        {mobileOpen && (
+          <nav className="sa-mobile-menu" aria-label="Mobile navigation">
+            {links.map(l => (
+              <a key={l.label} href={l.href} className="sa-mobile-link" onClick={() => setMobileOpen(false)}>{l.label}</a>
+            ))}
+            <a href="/pl/" className="sa-mobile-link" lang="pl" onClick={() => setMobileOpen(false)} style={{ color: T.terra }}>Polski</a>
+          </nav>
+        )}
+      </nav>
+    </header>
   );
 }
 
-/* ── Hero Section ── */
+/* ── Hero ── */
 function HeroSection() {
   return (
-    <section id="hero" style={{ background: T.cream, minHeight: '92vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 108 }}>
-      {/* Subtle dot-grid background */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 0,
-        backgroundImage: `radial-gradient(circle, rgba(27,58,107,0.06) 1px, transparent 1px)`,
-        backgroundSize: '28px 28px',
-        pointerEvents: 'none',
-      }}></div>
+    <section id="hero" style={{ background: T.paper, paddingTop: 64, minHeight: '94vh', display: 'flex', alignItems: 'center' }}>
+      <div className="sa-max" style={{ padding: '80px 24px' }}>
+        <div style={{ display: 'flex', gap: 48, alignItems: 'flex-start', flexWrap: 'wrap' }}>
 
-      <div style={{ maxWidth: 1120, margin: '0 auto', padding: '56px 24px 80px', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap' }}>
-          <div style={{ flex: '1 1 520px', minWidth: 0 }}>
-            <span className="sa-tag sa-tag-teal" style={{ marginBottom: 20, display: 'inline-block' }}>
-              For Irish small businesses, schools &amp; community organisations
-            </span>
+          {/* Left: text */}
+          <div style={{ flex: '1 1 460px', minWidth: 0 }}>
+            <p style={{
+              fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase',
+              color: T.terra, fontFamily: "'Hanken Grotesk', sans-serif", marginBottom: 22,
+            }}>
+              EU AI Act compliance · Ireland · plain English
+            </p>
 
-            <h1 style={{ fontSize: 'clamp(36px, 5.5vw, 68px)', fontWeight: 700, color: T.charcoal, lineHeight: 1.1, marginBottom: 20, maxWidth: 780, textWrap: 'balance' }}>
-              Using AI in your business?
+            <h1 style={{ fontSize: 'clamp(36px, 5.2vw, 66px)', fontWeight: 600, color: T.ink, lineHeight: 1.1, marginBottom: 26, maxWidth: 680 }}>
+              AI compliance for Irish small businesses —{' '}
+              <em style={{ fontStyle: 'italic', color: T.sageDark }}>without the consultant fees.</em>
             </h1>
-            <p style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 600, color: T.teal, lineHeight: 1.3, marginBottom: 20, maxWidth: 620 }}>
-              You may already have legal obligations.
-            </p>
-            <p style={{ fontSize: 16, color: T.charcoal, lineHeight: 1.8, maxWidth: 700, marginBottom: 36 }}>
-              Even everyday use of AI tools like writing emails, creating content, or summarising documents can create legal obligations under the EU AI Act for Irish businesses, schools, and organisations. Most organisations are already using AI. Very few realise they’re responsible for how it’s used.
+
+            <p style={{ fontSize: 18, color: T.inkSoft, lineHeight: 1.8, maxWidth: 560, marginBottom: 36, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              I'm Marcela. I help Irish sole traders and micro-businesses meet their EU AI Act obligations with plain-English templates and short, practical training. €19 to buy. Ten minutes to fill. File it and sleep at night.
             </p>
 
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 14 }}>
               <a href="#quiz" className="sa-btn-primary" style={{ fontSize: 16, padding: '16px 32px' }}>
-                Take the 2-minute check
+                Take the 2-minute AI risk check <Icon.Arrow size={16} color="#fff" />
               </a>
-              <a href="#booking" className="sa-btn-outline" style={{ fontSize: 16, padding: '14px 32px', color: T.navy, borderColor: 'rgba(27,58,107,0.35)' }}>
-                Book a call with Marcela
+              <a href="#products" className="sa-btn-outline" style={{ fontSize: 15, padding: '14px 28px' }}>
+                See the products
               </a>
             </div>
-          </div>
 
-          <div style={{ flex: '0 1 420px', minWidth: 280, display: 'flex', justifyContent: 'center' }} aria-label="SafeAI brand mark">
-            <div style={{ width: '100%', maxWidth: 420, padding: '34px 26px', borderRadius: 26, background: 'rgba(255,255,255,0.78)', border: '1px solid rgba(27,58,107,0.08)', boxShadow: '0 24px 70px rgba(27,58,107,0.12)', backdropFilter: 'blur(4px)' }}>
-              <img
-                src="safeai-logo.png"
-                alt="SafeAI — AI Training & Compliance"
-                style={{ width: '100%', height: 'auto', display: 'block', filter: 'drop-shadow(0 14px 22px rgba(27,58,107,0.12))' }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Problem Section ── */
-function ProblemSection() {
-  const uses = [
-    'Using AI to write emails or content',
-    'Pasting customer information into AI tools',
-    'Creating AI-generated marketing materials',
-    'Summarising meetings or documents',
-    'Letting staff use AI tools without guidance',
-  ];
-  const risks = [
-    'AI tools may process or store what you enter',
-    'Customer or staff data can be exposed unintentionally',
-    'AI-generated content can create copyright and transparency risks',
-    'Organisations remain responsible for how AI is used internally',
-  ];
-  return (
-    <section id="problem" style={{ background: T.white, padding: '88px 24px 0' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-
-        {/* Part 1: awareness */}
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p className="sa-eyebrow">EU AI Act Ireland · AI Compliance</p>
-          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 700, color: T.charcoal, marginBottom: 14, textWrap: 'balance' }}>
-            Most organisations are already using AI
-          </h2>
-          <p style={{ fontSize: 17, color: T.muted, maxWidth: 560, margin: '0 auto' }}>
-            Very few realise they may already be responsible for how it's used.
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12, marginBottom: 40 }}>
-          {uses.map((text, i) => (
-            <div key={i} className="sa-card" style={{ display: 'flex', gap: 14, alignItems: 'flex-start', padding: '16px 20px' }}>
-              <div style={{ width: 7, height: 7, borderRadius: '50%', background: T.teal, flexShrink: 0, marginTop: 7 }}></div>
-              <span style={{ fontSize: 14, color: T.ink, lineHeight: 1.65 }}>{text}</span>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ textAlign: 'center', marginBottom: 72 }}>
-          <p style={{ fontSize: 15, color: T.ink, lineHeight: 1.9, maxWidth: 620, margin: '0 auto 28px' }}>
-            If any of this is already happening in your organisation, the EU AI Act and GDPR may already apply — including for everyday tools like ChatGPT, Claude, or Canva AI.
-          </p>
-          <a href="#free-tools" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 28px' }}>
-            Get the Free AI Risk Checklist
-          </a>
-        </div>
-
-        {/* Divider */}
-        <div style={{ borderTop: '1px solid #e8edf2', marginBottom: 72 }}></div>
-
-        {/* Part 2: the quiet bit — renamed & improved */}
-        <div style={{ marginBottom: 96 }}>
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <p className="sa-eyebrow">AI Governance · AI Risk Assessment Ireland</p>
-            <h2 style={{ fontSize: 'clamp(22px, 3vw, 34px)', fontWeight: 700, color: T.charcoal, marginBottom: 10, textWrap: 'balance' }}>
-              The part most organisations don't realise
-            </h2>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 0, marginBottom: 36 }}>
-            {risks.map((text, i) => (
-              <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', padding: '16px 12px', borderBottom: '1px solid #f0f4f7' }}>
-                <Icon.Check size={20} />
-                <span style={{ fontSize: 14, color: T.ink, lineHeight: 1.75 }}>{text}</span>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ background: T.tealLight, borderLeft: `4px solid ${T.teal}`, borderRadius: '0 10px 10px 0', padding: '22px 28px', maxWidth: 700 }}>
-            <p style={{ fontSize: 15, color: T.ink, lineHeight: 1.85, marginBottom: 12 }}>
-              Even small businesses and community organisations can have obligations under the EU AI Act.
-            </p>
-            <p style={{ fontSize: 15, fontWeight: 600, color: T.charcoal, lineHeight: 1.7 }}>
-              You don't need to stop using AI.<br />You just need to use it properly.
+            <p style={{ fontSize: 12, color: T.grey, lineHeight: 1.6, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              Free · No email required to see your score · Available in English and Polish
             </p>
           </div>
-        </div>
 
-      </div>
-    </section>
-  );
-}
+          {/* Right: anchor card */}
+          <aside aria-label="Price comparison" style={{
+            flex: '0 1 380px', minWidth: 260,
+            background: T.paperWarm,
+            border: `1px solid ${T.line}`,
+            borderLeft: `4px solid ${T.terra}`,
+            borderRadius: 4,
+            padding: '28px 28px 24px',
+            alignSelf: 'flex-start',
+            marginTop: 16,
+          }}>
+            <p style={{
+              fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
+              color: T.grey, fontFamily: "'Hanken Grotesk', sans-serif", marginBottom: 18,
+            }}>
+              For comparison
+            </p>
+            <blockquote style={{
+              fontFamily: "'Fraunces', serif", fontSize: 'clamp(18px, 2.2vw, 24px)',
+              fontStyle: 'italic', fontWeight: 400, color: T.ink, lineHeight: 1.5, marginBottom: 18,
+            }}>
+              "An AI compliance consultant in Ireland costs €2,000–€5,000. SafeAI does the same for €19, once."
+            </blockquote>
+            <p style={{ fontSize: 13, color: T.inkSoft, lineHeight: 1.8, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              Same regulation. Same Article 4 requirement. Same documents you'd hand a regulator. The difference is the price — and that you don't have to wait four weeks.
+            </p>
+          </aside>
 
-/* ── Timeline Section ── */
-function TimelineSection() {
-  const steps = [
-    { date: 'Aug 2024', label: 'Act in force', note: 'Prohibited practices banned', done: true },
-    { date: 'Feb 2025', label: 'GPAI obligations', note: 'General-purpose AI rules', done: true },
-    { date: 'Aug 2025', label: 'High-risk rules', note: 'Most SME obligations apply', done: false },
-    { date: 'Aug 2026', label: 'Full enforcement', note: 'All articles enforceable', done: false },
-  ];
-  return (
-    <section id="timeline" style={{ background: T.tealLight, padding: '72px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <p className="sa-eyebrow">EU AI Act — Where We Are Now</p>
-        <h2 style={{ fontSize: 'clamp(24px, 3vw, 34px)', fontWeight: 700, color: T.charcoal, marginBottom: 8, textWrap: 'balance' }}>
-          The law is already in motion
-        </h2>
-        <p style={{ fontSize: 15, color: T.muted, marginBottom: 48 }}>Here's what's in force — and what's coming next for your organisation.</p>
-
-        <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
-          {/* Connecting line */}
-          <div style={{ position: 'absolute', top: 24, left: '12.5%', right: '12.5%', height: 3, background: T.teal, opacity: 0.2, borderRadius: 2 }}></div>
-          <div style={{ position: 'absolute', top: 24, left: '12.5%', width: '25%', height: 3, background: T.teal, opacity: 0.8, borderRadius: 2 }}></div>
-
-          {steps.map((s, i) => (
-            <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, position: 'relative', zIndex: 1 }}>
-              <div style={{
-                width: 48, height: 48, borderRadius: '50%',
-                background: s.done ? T.teal : T.white,
-                border: `3px solid ${s.done ? T.teal : '#c0ced8'}`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: s.done ? `0 0 0 6px ${T.tealLight}` : 'none',
-                transition: 'all 0.2s',
-              }}>
-                {s.done
-                  ? <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10.5l3.5 3.5 6.5-7" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  : <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#c0ced8' }}></div>
-                }
-              </div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: s.done ? T.teal : T.muted }}>{s.date}</div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: T.charcoal, textAlign: 'center' }}>{s.label}</div>
-              <div style={{ fontSize: 12, color: T.muted, textAlign: 'center', lineHeight: 1.5 }}>{s.note}</div>
-              {i === 2 && <span className="sa-tag sa-tag-teal">Coming up</span>}
-            </div>
-          ))}
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: 40 }}>
-          <span style={{ fontSize: 15, color: T.ink }}>Not sure where your organisation stands? </span>
-          <a href="#quiz" style={{ fontSize: 15, color: T.teal, fontWeight: 600, textDecoration: 'none' }}>Take the 2-minute check →</a>
         </div>
       </div>
     </section>
   );
 }
 
-/* ── Quiz Section ── */
+/* ── Quiz (embedded, score shown immediately — no email gate) ── */
 function QuizSection() {
   const R = React;
+
   const questions = [
-    { q: 'Are you or your staff generating images with AI for marketing or social media?', opts: ['Yes, regularly','Sometimes','Not sure'] },
-    { q: 'Has anyone pasted customer information or internal documents into an AI tool?', opts: ['Yes','Maybe','Definitely not'] },
-    { q: 'Do you have a written policy on what staff can and cannot put into AI tools?', opts: ['Yes, written and signed','We talked about it once','No'] },
-    { q: 'Have you trained your team on safe AI use in the last twelve months?', opts: ['Yes, with attendance recorded','Informally','No'] },
+    { q: 'Do you or your staff use any AI tools (ChatGPT, Copilot, Gemini, Canva AI, etc.)?', opts: ['Yes, regularly', 'Yes, occasionally', 'No / not sure'], risk: [1, 0.5, 0] },
+    { q: 'Do you have a written AI Acceptable Use Policy?', opts: ['Yes, signed by all staff', 'Draft exists, not signed', 'No'], risk: [-1, 0, 1] },
+    { q: 'Have you or your staff completed AI literacy training in the last 12 months?', opts: ['Yes, with records kept', 'Informally, nothing documented', 'No'], risk: [-1, 0.5, 1] },
+    { q: 'Do you have a record of which AI tools your business uses?', opts: ['Yes, full inventory', 'Partial list', 'No'], risk: [-1, 0, 1] },
+    { q: 'Do staff ever paste client or customer data into AI tools?', opts: ['Yes, regularly', 'Sometimes', 'Never'], risk: [1, 0.5, 0] },
+    { q: 'Have your staff signed anything related to AI use at work?', opts: ['Yes, all have signed', 'Some have', 'No'], risk: [-1, 0, 1] },
+    { q: 'Does everyone on your team know which AI tools are approved vs. off-limits?', opts: ["Yes, it's written down", 'They sort of know', 'No'], risk: [-1, 0, 1] },
+    { q: 'Have you taken any Article 4 compliance steps since 2 February 2025?', opts: ['Yes, have documentation', 'Aware but not acted', 'No / unaware of the deadline'], risk: [-1, 0.5, 1] },
   ];
 
   const [step, setStep] = R.useState(0);
-  const [answers, setAnswers] = R.useState([null,null,null,null]);
+  const [answers, setAnswers] = R.useState(new Array(questions.length).fill(null));
   const [email, setEmail] = R.useState('');
-  const [submitted, setSubmitted] = R.useState(false);
+  const [emailSent, setEmailSent] = R.useState(false);
 
-  function pick(opt) {
-    const a = [...answers]; a[step] = opt;
+  function pick(optIdx) {
+    const a = [...answers];
+    a[step] = optIdx;
     setAnswers(a);
     if (step < questions.length - 1) setStep(step + 1);
     else setStep(questions.length);
   }
 
-  function risk() {
-    let score = 0;
-    answers.forEach((a, i) => {
-      if (!a) return;
-      const idx = questions[i].opts.indexOf(a);
-      if (i <= 1) { if (idx === 0) score += 1; else if (idx === 1) score += 0.5; }
-      else { if (idx === 0) score -= 1; else if (idx === 1) score += 0.5; else score += 1; }
-    });
-    if (score <= 0) return 'Low';
-    if (score <= 2) return 'Medium';
+  function calcScore() {
+    return answers.reduce((sum, ans, i) => {
+      if (ans === null) return sum;
+      return sum + (questions[i].risk[ans] || 0);
+    }, 0);
+  }
+
+  function getRisk(score) {
+    if (score <= 1) return 'Low';
+    if (score <= 4) return 'Medium';
     return 'High';
   }
 
-  const riskColors = { Low: { bg: '#ECFDF5', text: '#065F46', border: '#34D399' }, Medium: { bg: '#FFFBEB', text: '#92400E', border: '#FBBF24' }, High: { bg: '#FEF2F2', text: '#991B1B', border: '#F87171' } };
+  function getGaps() {
+    const gaps = [];
+    if (answers[1] === 2) gaps.push('No written AI Acceptable Use Policy — required for Article 4');
+    if (answers[2] >= 1) gaps.push('No documented AI literacy training for staff');
+    if (answers[3] >= 1) gaps.push('No inventory of AI tools used in the business');
+    if (answers[5] >= 1) gaps.push('Staff have not signed an AI use agreement');
+    if (answers[7] >= 1) gaps.push('No Article 4 compliance documentation since Feb 2025');
+    return gaps;
+  }
+
+  const riskMeta = {
+    Low:    { bg: '#F0F4F1', text: T.sageDark, border: T.sage, label: 'Low exposure' },
+    Medium: { bg: '#FFF8F2', text: '#7A3A18', border: T.terra, label: 'Medium exposure' },
+    High:   { bg: '#FFF4F0', text: '#7A2010', border: '#C0402A', label: 'High exposure' },
+  };
   const riskText = {
-    Low: "Your organisation appears to have some awareness of AI risks. A quick review of your practices would help confirm you're on the right track.",
-    Medium: "Your AI use creates some legal risk under the EU AI Act. The good news: most gaps are straightforward to close with a written policy and basic training.",
-    High: "Your current AI practices create meaningful risk under the EU AI Act. This is common and fixable. A structured approach to AI governance will address most of your exposure."
+    Low:    "You've taken some steps. A quick review will confirm you're covered under Article 4.",
+    Medium: "Your AI use creates some gaps under Article 4. These are straightforward to close with the right templates.",
+    High:   "Your current setup creates real exposure under Article 4. This is common — and fixable with the Sole Trader Pack.",
   };
 
+  const score = step === questions.length ? calcScore() : null;
+  const risk = score !== null ? getRisk(score) : null;
+
+  function restart() {
+    setStep(0);
+    setAnswers(new Array(questions.length).fill(null));
+    setEmail('');
+    setEmailSent(false);
+  }
+
   return (
-    <section id="quiz" style={{ background: T.white, padding: '80px 24px' }}>
+    <section id="quiz" className="sa-section" style={{ background: T.paperWarm, borderTop: `1px solid ${T.line}`, borderBottom: `1px solid ${T.line}` }}>
       <div style={{ maxWidth: 680, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <p className="sa-eyebrow">Self-Assessment</p>
-          <h2 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 700, color: T.charcoal, marginBottom: 10 }}>Find out your AI exposure in 2 minutes</h2>
-          <p style={{ fontSize: 15, color: T.muted }}>4 questions. Instant result. Free checklist to your inbox.</p>
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+          <span className="sa-kicker" style={{ display: 'block', textAlign: 'center' }}>2-minute AI risk check</span>
+          <h2 style={{ fontSize: 'clamp(24px, 3vw, 36px)', color: T.ink, marginBottom: 10 }}>
+            Find out where you stand under Article 4
+          </h2>
+          <p style={{ fontSize: 14, color: T.grey, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+            8 questions · instant result · no email required
+          </p>
         </div>
 
-        <div style={{ background: T.white, border: `2px solid ${T.teal}`, borderRadius: 14, padding: '32px 36px', boxShadow: '0 8px 32px rgba(27,154,170,0.10)' }}>
+        <div style={{ background: T.paper, border: `1.5px solid ${T.line}`, borderRadius: 6, padding: '32px 36px' }}>
           {step < questions.length ? (
             <>
-              <div style={{ marginBottom: 24 }}>
+              <div style={{ marginBottom: 28 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontSize: 12, color: T.muted }}>Step {step + 1} of {questions.length}</span>
-                  <span style={{ fontSize: 12, color: T.teal, fontWeight: 600 }}>{Math.round(((step + 1) / questions.length) * 100)}%</span>
+                  <span style={{ fontSize: 12, color: T.grey, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                    Question {step + 1} of {questions.length}
+                  </span>
+                  <span style={{ fontSize: 12, color: T.terra, fontWeight: 600, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                    {Math.round(((step + 1) / questions.length) * 100)}%
+                  </span>
                 </div>
-                <div style={{ height: 5, background: T.cream, borderRadius: 3, overflow: 'hidden' }}>
-                  <div style={{ width: `${((step + 1) / questions.length) * 100}%`, height: '100%', background: T.teal, borderRadius: 3, transition: 'width 0.4s ease' }}></div>
+                <div style={{ height: 3, background: T.line, borderRadius: 2, overflow: 'hidden' }}>
+                  <div style={{ width: `${((step + 1) / questions.length) * 100}%`, height: '100%', background: T.terra, borderRadius: 2, transition: 'width 0.4s ease' }} />
                 </div>
               </div>
-              <h3 style={{ fontSize: 18, fontWeight: 600, color: T.charcoal, marginBottom: 20, lineHeight: 1.5 }}>{questions[step].q}</h3>
+              <h3 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 17, fontWeight: 600, color: T.ink, marginBottom: 20, lineHeight: 1.5 }}>
+                {questions[step].q}
+              </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {questions[step].opts.map(o => (
-                  <button key={o} className="quiz-opt" onClick={() => pick(o)}
-                    style={{ padding: '14px 18px', background: T.cream, border: `1.5px solid #d8e4eb`, borderRadius: 8, fontSize: 14, color: T.ink, textAlign: 'left', cursor: 'pointer', fontFamily: 'Poppins, sans-serif', transition: 'all 0.15s' }}>
+                {questions[step].opts.map((o, i) => (
+                  <button key={i} className="quiz-opt" onClick={() => pick(i)}
+                    style={{ padding: '14px 18px', background: T.paper, border: `1.5px solid ${T.line}`, borderRadius: 4, fontSize: 14, color: T.ink, textAlign: 'left', cursor: 'pointer', fontFamily: "'Hanken Grotesk', sans-serif", transition: 'all 0.15s' }}>
                     {o}
                   </button>
                 ))}
               </div>
             </>
-          ) : !submitted ? (
+          ) : (
             <>
-              {(() => { const r = risk(); const c = riskColors[r]; return (
-                <>
-                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                    <span style={{ display: 'inline-block', padding: '6px 18px', borderRadius: 24, background: c.bg, color: c.text, border: `1.5px solid ${c.border}`, fontSize: 14, fontWeight: 600 }}>
-                      {r} exposure
-                    </span>
-                  </div>
-                  <p style={{ fontSize: 15, color: T.ink, lineHeight: 1.8, marginBottom: 28 }}>{riskText[r]}</p>
-                </>
-              )})()}
-              <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: T.charcoal, marginBottom: 8 }}>Send me my full report and the free Irish SME AI Risk Checklist</label>
-                <div style={{ display: 'flex', gap: 10 }}>
-                  <input type="email" className="sa-input" placeholder="your@email.ie" value={email} onChange={e => setEmail(e.target.value)} />
-                  <button className="sa-btn-primary" style={{ fontSize: 14, padding: '13px 20px', flexShrink: 0 }} onClick={() => { if (email) { submitEmail(email, 'quiz'); setSubmitted(true); } }}>
-                    Send it <Icon.Arrow size={16} color="#fff" />
-                  </button>
+              {/* Score shown immediately — no email gate */}
+              <div style={{ textAlign: 'center', marginBottom: 24 }}>
+                <span style={{
+                  display: 'inline-block', padding: '8px 24px', borderRadius: 3,
+                  background: riskMeta[risk].bg, color: riskMeta[risk].text,
+                  border: `1.5px solid ${riskMeta[risk].border}`,
+                  fontFamily: "'Fraunces', serif", fontSize: 18, fontStyle: 'italic',
+                }}>
+                  {riskMeta[risk].label}
+                </span>
+              </div>
+
+              <p style={{ fontSize: 15, color: T.ink, lineHeight: 1.85, marginBottom: 20, textAlign: 'center', fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                {riskText[risk]}
+              </p>
+
+              {getGaps().length > 0 && (
+                <div style={{ background: T.paperWarm, border: `1px solid ${T.line}`, borderRadius: 4, padding: '16px 20px', marginBottom: 24 }}>
+                  <p style={{ fontSize: 12, fontWeight: 700, color: T.ink, marginBottom: 10, letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                    Specific gaps found:
+                  </p>
+                  {getGaps().map((g, i) => (
+                    <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 6 }}>
+                      <span style={{ color: T.terra, fontSize: 14, flexShrink: 0, lineHeight: 1.6 }}>→</span>
+                      <span style={{ fontSize: 13, color: T.inkSoft, lineHeight: 1.6, fontFamily: "'Hanken Grotesk', sans-serif" }}>{g}</span>
+                    </div>
+                  ))}
                 </div>
+              )}
+
+              <div style={{ textAlign: 'center', marginBottom: 24 }}>
+                <a href="#products" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 28px' }}>
+                  See the products that close these gaps <Icon.Arrow size={15} color="#fff" />
+                </a>
+              </div>
+
+              {/* Optional email — clearly labelled as optional */}
+              <div style={{ paddingTop: 20, borderTop: `1px solid ${T.line}` }}>
+                {!emailSent ? (
+                  <>
+                    <p style={{ fontSize: 13, color: T.grey, marginBottom: 12, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                      Optional: get a copy of your results by email. We only follow up if you ask us to.
+                    </p>
+                    <div style={{ display: 'flex', gap: 10 }}>
+                      <input type="email" className="sa-input" placeholder="your@email.ie" value={email} onChange={e => setEmail(e.target.value)} />
+                      <button className="sa-btn-primary" style={{ fontSize: 14, padding: '13px 18px', flexShrink: 0 }}
+                        onClick={() => { if (email) { submitEmail(email, 'quiz'); setEmailSent(true); } }}>
+                        Send
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <p style={{ fontSize: 14, color: T.sageDark, fontFamily: "'Hanken Grotesk', sans-serif" }}>✓ Sent — check your inbox.</p>
+                )}
+              </div>
+
+              <div style={{ marginTop: 16, textAlign: 'center' }}>
+                <button onClick={restart} style={{ fontSize: 12, color: T.grey, background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Hanken Grotesk', sans-serif", textDecoration: 'underline' }}>
+                  Start again
+                </button>
               </div>
             </>
-          ) : (
-            <div style={{ textAlign: 'center', padding: '20px 0' }}>
-              <Icon.CheckCircle size={56} />
-              <h3 style={{ fontSize: 20, fontWeight: 700, color: T.charcoal, margin: '16px 0 8px' }}>Check your inbox</h3>
-              <p style={{ fontSize: 14, color: T.muted, lineHeight: 1.7 }}>The checklist is on its way. We'll follow up with one practical email next week, then leave you alone unless you ask us not to.</p>
-            </div>
           )}
         </div>
       </div>
@@ -560,29 +539,40 @@ function QuizSection() {
   );
 }
 
-/* ── Services Section ── */
-function ServicesSection() {
-  const services = [
-    { title: 'Practical AI Safety Workshop', price: 'From €800', cta: 'Book a workshop', href: 'https://cal.com/safeai/workshop', desc: '2.5-hour on-site or remote session for teams of up to 20. Your team maps every AI tool in use, agrees what is and is not acceptable, and leaves with an AI Use Inventory and a draft Acceptable Use Policy to build on.' },
-    { title: 'AI Awareness Talk', price: '', cta: 'Get in touch', href: 'mailto:marcela@safeai.ie', desc: 'A 45–60 minute keynote or staff briefing on AI risks, the EU AI Act, and what safe AI use looks like in practice. Suitable for all-hands meetings, CPD days, conferences, and board briefings.' },
+/* ── Section 1 — Artifacts ── */
+function ArtifactsSection() {
+  const items = [
+    { num: '01', label: 'Signed AI Acceptable Use Policy', desc: 'One page. Names which tools your business approves and which data is off-limits. Staff sign it.' },
+    { num: '02', label: 'Article 4 Training Log', desc: 'Demonstrable evidence that your staff have AI literacy. Required since 2 February 2025.' },
+    { num: '03', label: 'Per-staff completion certificates', desc: 'Printable. Goes in the compliance folder. Proof, not pedigree.' },
+    { num: '04', label: 'One-page compliance summary', desc: "The page you hand a regulator (or your accountant) that says \"here's what we've done.\" Short." },
   ];
   return (
-    <section id="services" style={{ background: T.navy, padding: '80px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <p className="sa-eyebrow" style={{ color: T.teal }}>AI Training &amp; Awareness</p>
-        <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', fontWeight: 700, color: T.white, marginBottom: 10, textWrap: 'balance', maxWidth: 600 }}>
-          Practical support for organisations that want clarity, not complexity.
-        </h2>
-        <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginBottom: 48, maxWidth: 540 }}>AI awareness training for SMEs · schools · community organisations · Ireland</p>
+    <section id="artifacts" className="sa-section" style={{ background: T.paper }}>
+      <div className="sa-max">
+        <div style={{ marginBottom: 56, maxWidth: 680 }}>
+          <span className="sa-kicker">N° 01 · The artifact</span>
+          <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.ink, marginBottom: 18, lineHeight: 1.15 }}>
+            What you actually walk away with.
+          </h2>
+          <p style={{ fontSize: 17, color: T.inkSoft, lineHeight: 1.8, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+            No vague promises about transformation. Here's the list of documents you'll have on your hard drive — or printed and pinned above your desk — by tomorrow afternoon.
+          </p>
+        </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20, marginBottom: 20 }}>
-          {services.map((s, i) => (
-            <div key={i} style={{ background: T.white, borderRadius: 12, padding: '28px 28px 24px' }}>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: T.charcoal, marginBottom: 12 }}>{s.title}</h3>
-              <p style={{ fontSize: 14, color: T.ink, lineHeight: 1.8, marginBottom: 20 }}>{s.desc}</p>
-              <span style={{ display: 'inline-block', fontSize: 12, fontWeight: 600, color: T.muted, background: T.cream, border: '1px solid #d0dce4', borderRadius: 20, padding: '4px 12px', marginBottom: 20 }}>Coming soon</span>
-              <a href={s.href} target="_blank" rel="noopener noreferrer" className="sa-btn-primary" style={{ fontSize: 14, padding: '12px 22px' }}>{s.cta}</a>
-            </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', border: `1px solid ${T.line}`, borderRadius: 4, overflow: 'hidden' }}>
+          {items.map((item, i) => (
+            <article key={i} style={{ background: T.paperWarm, padding: '28px 24px', borderRight: `1px solid ${T.line}`, borderBottom: `1px solid ${T.line}` }}>
+              <p style={{ fontFamily: "'Fraunces', serif", fontSize: 11, fontStyle: 'italic', color: T.terra, marginBottom: 14, letterSpacing: '0.04em' }}>
+                Item {item.num}
+              </p>
+              <h3 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 15, fontWeight: 700, color: T.ink, marginBottom: 10, lineHeight: 1.5 }}>
+                {item.label}
+              </h3>
+              <p style={{ fontSize: 13, color: T.inkSoft, lineHeight: 1.75, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                {item.desc}
+              </p>
+            </article>
           ))}
         </div>
       </div>
@@ -590,332 +580,440 @@ function ServicesSection() {
   );
 }
 
-/* ── Free Tools Section ── */
-function FreeToolsSection() {
-  const R = React;
-  const [modal, setModal] = R.useState(null);
-  const [emailVal, setEmailVal] = R.useState('');
-  const [sent, setSent] = R.useState(null);
-
-  const tools = [
-    { title: 'The Irish SME AI Risk Checklist', type: 'PDF · fillable', desc: 'A 10-point guide to identifying hidden risks in your daily AI use.' },
-    { title: 'AI Image Safety Guide', type: 'PDF', desc: 'Know whether your AI-generated marketing content is safe to publish under Irish copyright and EU AI Act rules.' },
-    { title: 'SafeAI Team Policy Template', type: 'Editable .docx', desc: 'A simple one-page Acceptable Use Policy you can give your team today.' },
-  ];
-
-  return (
-    <section id="free-tools" style={{ background: T.cream, padding: '80px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p className="sa-eyebrow">Free Tools</p>
-          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', fontWeight: 700, color: T.charcoal, marginBottom: 10 }}>Designed for your desk, not your lawyer</h2>
-          <p style={{ fontSize: 15, color: T.muted, maxWidth: 480, margin: '0 auto' }}>Each download is sent to your inbox. We'll email you twice more, then leave you alone.</p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
-          {tools.map((t, i) => (
-            <div key={i} className="sa-card sa-card-teal">
-              <span className="sa-tag sa-tag-teal" style={{ marginBottom: 14, display: 'inline-block' }}>{t.type}</span>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: T.charcoal, marginBottom: 8 }}>{t.title}</h3>
-              <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.7, marginBottom: 18 }}>{t.desc}</p>
-              <button onClick={() => setModal(i)} className="sa-btn-ghost" style={{ fontSize: 14 }}>
-                Get it <Icon.Arrow size={14} color={T.teal} />
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* Modal */}
-        {modal !== null && (
-          <div onClick={() => setModal(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(27,58,107,0.45)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-            <div onClick={e => e.stopPropagation()} style={{ background: T.white, borderRadius: 14, padding: '32px 32px 28px', maxWidth: 480, width: '100%', position: 'relative', boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}>
-              <button onClick={() => { setModal(null); setEmailVal(''); setSent(null); }} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', cursor: 'pointer', fontSize: 20, color: T.muted }}>×</button>
-              {sent === modal ? (
-                <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                  <Icon.CheckCircle size={48} />
-                  <p style={{ fontSize: 16, fontWeight: 600, color: T.charcoal, marginTop: 12 }}>On its way!</p>
-                </div>
-              ) : (
-                <>
-                  <h3 style={{ fontSize: 18, fontWeight: 700, color: T.charcoal, marginBottom: 20 }}>{tools[modal].title}</h3>
-                  <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: T.charcoal, marginBottom: 8 }}>Where should we send it?</label>
-                  <div style={{ display: 'flex', gap: 10 }}>
-                    <input type="email" className="sa-input" placeholder="your@email.ie" value={emailVal} onChange={e => setEmailVal(e.target.value)} />
-                    <button className="sa-btn-primary" style={{ fontSize: 14, padding: '13px 18px', flexShrink: 0 }} onClick={() => { if (emailVal) { submitEmail(emailVal, 'free-tools'); setSent(modal); } }}>Send</button>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
-/* ── Guides Section ── */
-function GuidesSection() {
-  const R = React;
-  const [freeModal, setFreeModal] = R.useState(false);
-  const [emailVal, setEmailVal] = R.useState('');
-  const [sent, setSent] = R.useState(false);
-
-  const guides = [
-    { badge: 'Free', badgeStyle: 'sa-tag-teal', title: 'EU AI Act for Irish Small Organisations', desc: 'Plain-English field guide, 17 pages.', price: 'Free with email', action: () => setFreeModal(true), cta: 'Get it free' },
-    { badge: '€19', badgeStyle: 'sa-tag-navy', title: 'AI for Sole Traders', desc: 'Use ChatGPT, Claude, and Canva Magic to run your business like a team of ten — without the legal headaches.', price: '€19', action: () => {}, cta: 'Order' },
-    { badge: '€39', badgeStyle: 'sa-tag-navy', title: 'Educational AI Governance', desc: 'Article 4 framework for primary, post-primary, and further education. Includes staff policy template.', price: '€39', action: () => {}, cta: 'Order' },
-  ];
-
-  return (
-    <section id="guides" style={{ background: T.white, padding: '80px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p className="sa-eyebrow">Companion Guides</p>
-          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', fontWeight: 700, color: T.charcoal, marginBottom: 10 }}>When you want to go deeper</h2>
-          <p style={{ fontSize: 15, color: T.muted }}>The working documents we hand to clients during workshops.</p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
-          {guides.map((g, i) => (
-            <div key={i} className="sa-card" style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className={`sa-tag ${g.badgeStyle}`} style={{ marginBottom: 14, display: 'inline-block', width: 'fit-content' }}>{g.badge}</span>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: T.charcoal, marginBottom: 8, flex: 1 }}>{g.title}</h3>
-              <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.7, marginBottom: 16 }}>{g.desc}</p>
-              <p style={{ fontSize: 16, fontWeight: 700, color: T.charcoal, marginBottom: 16 }}>{g.price}</p>
-              <button onClick={g.action} className="sa-btn-ghost" style={{ fontSize: 14, alignSelf: 'flex-start', border: `1.5px solid ${T.teal}`, borderRadius: 6, padding: '8px 16px', color: T.teal }}>{g.cta}</button>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {freeModal && (
-        <div onClick={() => setFreeModal(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(27,58,107,0.45)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <div onClick={e => e.stopPropagation()} style={{ background: T.white, borderRadius: 14, padding: '32px', maxWidth: 480, width: '100%', position: 'relative', boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}>
-            <button onClick={() => { setFreeModal(false); setEmailVal(''); setSent(false); }} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', cursor: 'pointer', fontSize: 20, color: T.muted }}>×</button>
-            {sent ? (
-              <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                <Icon.CheckCircle size={48} />
-                <p style={{ fontSize: 16, fontWeight: 600, color: T.charcoal, marginTop: 12 }}>On its way!</p>
-              </div>
-            ) : (
-              <>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: T.charcoal, marginBottom: 20 }}>The EU AI Act for Irish Small Organisations</h3>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: T.charcoal, marginBottom: 8 }}>Where should we send it?</label>
-                <div style={{ display: 'flex', gap: 10 }}>
-                  <input type="email" className="sa-input" placeholder="your@email.ie" value={emailVal} onChange={e => setEmailVal(e.target.value)} />
-                  <button className="sa-btn-primary" style={{ fontSize: 14, padding: '13px 18px', flexShrink: 0 }} onClick={() => { if (emailVal) { submitEmail(emailVal, 'guide-free'); setSent(true); } }}>Send</button>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
-
-/* ── Official EU Resources Section ── */
-function OfficialResourcesSection() {
-  const tools = [
+/* ── Section 2 — Products ── */
+function ProductsSection() {
+  const products = [
     {
-      title: 'AI Act Explorer',
-      reveal: 'Understand exactly which obligations apply to your organisation — before a regulator does.',
-      desc: 'Browse the full text of the EU AI Act in a searchable interface built by the EU AI Office. Find the articles that apply to your sector and role.',
-      cta: 'Open Explorer',
-      url: 'https://ai-act-service-desk.ec.europa.eu/en',
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <circle cx="11" cy="14" r="3"/>
-          <line x1="16" y1="19" x2="13.5" y2="16.5"/>
-        </svg>
-      ),
+      price: '€0', badge: 'free',
+      title: '2-Minute AI Risk Check',
+      desc: 'A short interactive quiz that tells you where you stand under Article 4 of the EU AI Act. Your score is shown immediately — no email needed to see it. We only follow up if you ask.',
+      cta: 'Take the quiz →', href: '#quiz',
+      featured: false,
     },
     {
-      title: 'Compliance Checker',
-      reveal: 'Most organisations find gaps they did not expect. Knowing about them is the first step to fixing them.',
-      desc: 'The official Commission tool that evaluates whether your AI systems meet the EU AI Act requirements. Takes 10 minutes. The results are often surprising.',
-      cta: 'Check Your Compliance',
-      url: 'https://ai-act-service-desk.ec.europa.eu/en',
-      highlight: true,
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <polyline points="9 15 11 17 15 13"/>
-        </svg>
-      ),
+      price: '€19', badge: 'one-time',
+      title: 'Sole Trader AI Compliance Pack',
+      desc: 'AUP template, Article 4 training log, Use Policy form, sign-off page. Print it, fill it, file it. Plain English. Available in Polish. Built for businesses with 1–10 staff.',
+      cta: 'Buy the pack →', href: '#',
+      featured: true, tag: 'FLAGSHIP',
     },
     {
-      title: 'AI Act Service Desk',
-      reveal: 'Official answers to official questions — but guidance alone does not turn compliance into practice.',
-      desc: 'Submit questions directly to EU AI Office experts in your own language. Use this for regulatory clarifications, then use SafeAI to translate the answers into action.',
-      cta: 'Contact the Desk',
-      url: 'https://ai-act-service-desk.ec.europa.eu/en',
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-        </svg>
-      ),
+      price: '€69', badge: 'one-time',
+      title: 'EU AI Act Compliance Course',
+      desc: 'Five short videos (under one hour total), a quick quiz, and a printable certificate for each staff member\'s compliance folder. Watch on your phone during lunch.',
+      cta: 'Get the course →', href: '#',
+      featured: false,
     },
   ];
 
   return (
-    <section id="eu-resources" style={{ background: '#F4F6FA', padding: '80px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p className="sa-eyebrow" style={{ color: '#6366f1' }}>Free tools from the EU AI Office</p>
-          <h2 style={{ fontSize: 'clamp(24px, 3vw, 34px)', fontWeight: 700, color: T.charcoal, marginBottom: 12 }}>See where you stand — then close the gaps</h2>
-          <p style={{ fontSize: 15, color: T.muted, maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>The European Commission publishes these tools for free. We recommend them — because once you see what the AI Act actually requires of your organisation, the next step becomes obvious.</p>
+    <section id="products" className="sa-section" style={{ background: T.paperWarm, borderTop: `1px solid ${T.line}` }}>
+      <div className="sa-max">
+        <div style={{ marginBottom: 48 }}>
+          <span className="sa-kicker">N° 02 · Three products</span>
+          <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.ink, marginBottom: 16 }}>
+            Three things. That's it.
+          </h2>
+          <p style={{ fontSize: 17, color: T.inkSoft, maxWidth: 560, lineHeight: 1.8, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+            No tier confusion. No upsell ladder. Start with the free quiz; buy the pack if you need the documents; take the course if you want the certificate.
+          </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: 20, marginBottom: 40 }}>
-          {tools.map((t, i) => (
-            <div key={i} className="sa-card" style={{ display: 'flex', flexDirection: 'column', borderTop: `3px solid ${t.highlight ? T.teal : '#6366f1'}`, position: 'relative' }}>
-              {t.highlight && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+          {products.map((p, i) => (
+            <article key={i} style={{
+              background: p.featured ? '#FFF8F2' : T.paper,
+              border: `1.5px solid ${p.featured ? T.terra : T.line}`,
+              borderRadius: 4, padding: '28px 24px 24px',
+              display: 'flex', flexDirection: 'column', position: 'relative',
+            }}>
+              {p.tag && (
                 <div style={{
-                  position: 'absolute', top: -1, right: 16,
-                  background: T.teal, color: '#fff',
-                  fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
-                  padding: '3px 10px', borderRadius: '0 0 6px 6px',
-                }}>Start here</div>
+                  position: 'absolute', top: -1, left: 20,
+                  background: T.terra, color: '#fff',
+                  fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+                  padding: '3px 10px', borderRadius: '0 0 4px 4px',
+                  fontFamily: "'Hanken Grotesk', sans-serif",
+                }}>
+                  {p.tag}
+                </div>
               )}
-              <div style={{ color: t.highlight ? T.teal : '#6366f1', marginBottom: 14 }}>{t.icon}</div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: T.charcoal, marginBottom: 6 }}>{t.title}</h3>
-              <p style={{ fontSize: 13, fontStyle: 'italic', color: T.ink, lineHeight: 1.6, marginBottom: 10 }}>{t.reveal}</p>
-              <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.7, marginBottom: 20, flex: 1 }}>{t.desc}</p>
-              <a
-                href={t.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6,
-                  fontSize: 13, fontWeight: 700,
-                  color: t.highlight ? T.teal : '#6366f1',
-                  textDecoration: 'none', alignSelf: 'flex-start',
-                  border: `1.5px solid ${t.highlight ? T.teal : '#6366f1'}`, borderRadius: 6,
-                  padding: '8px 14px', transition: 'background 0.15s, color 0.15s',
-                }}
-                onMouseOver={e => { e.currentTarget.style.background = t.highlight ? T.teal : '#6366f1'; e.currentTarget.style.color = '#fff'; }}
-                onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = t.highlight ? T.teal : '#6366f1'; }}
-              >
-                {t.cta} <Icon.Arrow size={12} color="currentColor" />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16, marginTop: p.tag ? 10 : 0 }}>
+                <span style={{
+                  fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+                  color: p.featured ? T.terra : T.grey, fontFamily: "'Hanken Grotesk', sans-serif",
+                }}>
+                  {p.badge}
+                </span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontSize: 30, fontWeight: 700, color: T.ink, lineHeight: 1 }}>
+                  {p.price}
+                </span>
+              </div>
+              <h3 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 17, fontWeight: 700, color: T.ink, marginBottom: 12, lineHeight: 1.4 }}>
+                {p.title}
+              </h3>
+              <p style={{ fontSize: 14, color: T.inkSoft, lineHeight: 1.8, marginBottom: 24, flex: 1, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                {p.desc}
+              </p>
+              <a href={p.href} className={p.featured ? 'sa-btn-primary' : 'sa-btn-outline'} style={{ fontSize: 14, padding: '12px 20px', alignSelf: 'flex-start' }}>
+                {p.cta}
               </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Section 3 — Who it's for ── */
+function AudienceSection() {
+  const chips = [
+    { label: 'Beauty salons', highlight: false },
+    { label: 'Hair & nails', highlight: false },
+    { label: 'Polish-speaking businesses', highlight: true },
+    { label: 'Sole traders', highlight: false },
+    { label: "Solicitors' offices", highlight: false },
+    { label: 'GP practices', highlight: false },
+    { label: 'Accountants & bookkeepers', highlight: false },
+    { label: 'Restaurants & cafés', highlight: false },
+    { label: 'Crèches', highlight: false },
+    { label: 'Tradespeople', highlight: false },
+    { label: 'Coaches & consultants', highlight: false },
+    { label: 'Online retailers', highlight: false },
+  ];
+  return (
+    <section id="audience" className="sa-section" style={{ background: T.paper, borderTop: `1px solid ${T.line}` }}>
+      <div className="sa-max">
+        <span className="sa-kicker">N° 03 · Who it's for</span>
+        <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.ink, marginBottom: 20, maxWidth: 600 }}>
+          This is for you if you run a small Irish business.
+        </h2>
+        <p style={{ fontSize: 17, color: T.inkSoft, maxWidth: 680, lineHeight: 1.85, marginBottom: 14, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          If you use ChatGPT, Copilot, Gemini, or any tool with "AI" in the name, the EU AI Act applies to you. It probably also applies to your booking system, your design app, and the AI features hiding in your accounting software. There's no SME exemption, and Article 4 is already enforceable.
+        </p>
+        <p style={{ fontSize: 16, color: T.inkSoft, maxWidth: 580, lineHeight: 1.85, marginBottom: 36, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          SafeAI is sized and priced for businesses with 1–10 staff. Sole traders especially.{' '}
+          <em style={{ fontStyle: 'italic', fontFamily: "'Fraunces', serif", color: T.sageDark }}>Polish-speaking businesses very especially.</em>
+        </p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }} role="list" aria-label="Sectors served">
+          {chips.map((c, i) => (
+            <span key={i} role="listitem" style={{
+              fontSize: 13, padding: '7px 16px', borderRadius: 3,
+              background: c.highlight ? T.sageDark : T.paperWarm,
+              color: c.highlight ? '#fff' : T.inkSoft,
+              border: `1px solid ${c.highlight ? T.sageDark : T.line}`,
+              fontFamily: "'Hanken Grotesk', sans-serif",
+              fontWeight: c.highlight ? 600 : 400,
+            }}>
+              {c.label}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Section 4 — How it works ── */
+function HowItWorksSection() {
+  const steps = [
+    {
+      num: 'Step one',
+      title: 'Take the 2-minute quiz',
+      desc: "Answer eight questions about how your business uses AI tools. You'll get an instant score and a list of the specific things you need to fix.",
+    },
+    {
+      num: 'Step two',
+      title: 'Buy the right pack',
+      desc: 'Most small businesses need the €19 Sole Trader Pack. Owners of teams may want the €69 course on top. Available in English and Polish.',
+    },
+    {
+      num: 'Step three',
+      title: 'Fill it, sign it, file it',
+      desc: 'Print the templates. Fill them in. Get staff to sign. Save the PDFs. You now have everything Article 4 requires.',
+    },
+  ];
+  return (
+    <section id="how" className="sa-section" style={{ background: T.paperWarm, borderTop: `1px solid ${T.line}` }}>
+      <div className="sa-max">
+        <span className="sa-kicker">N° 04 · How it works</span>
+        <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.ink, marginBottom: 56 }}>
+          Three steps. Total: about an hour of your life.
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 40 }}>
+          {steps.map((s, i) => (
+            <div key={i}>
+              <p style={{ fontFamily: "'Fraunces', serif", fontSize: 12, fontStyle: 'italic', color: T.terra, marginBottom: 12 }}>
+                {s.num}
+              </p>
+              <h3 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 17, fontWeight: 700, color: T.ink, marginBottom: 14, lineHeight: 1.4 }}>
+                {s.title}
+              </h3>
+              <div style={{ width: 28, height: 2, background: T.terra, borderRadius: 1, marginBottom: 14 }} />
+              <p style={{ fontSize: 14, color: T.inkSoft, lineHeight: 1.85, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                {s.desc}
+              </p>
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div style={{
-          background: T.navy,
-          borderRadius: 14,
-          padding: '32px 36px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap',
-        }}>
-          <div>
-            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(143,227,237,0.8)', marginBottom: 8 }}>What comes next</p>
-            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Found gaps? That is exactly what SafeAI is for.</h3>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', maxWidth: 480, lineHeight: 1.7 }}>These tools tell you what the law requires. SafeAI turns that into practical training and a clear action plan — so your team knows what to do and you can demonstrate compliance with confidence.</p>
+/* ── Section 5 — About ── */
+function AboutSection() {
+  return (
+    <section id="about" className="sa-section" style={{ background: T.paper, borderTop: `1px solid ${T.line}` }}>
+      <div className="sa-max">
+        <div className="about-grid">
+          <div className="about-photo">
+            <div style={{
+              aspectRatio: '4/5', background: T.paperWarm, borderRadius: 4,
+              border: `1.5px dashed ${T.line}`, display: 'flex', alignItems: 'center',
+              justifyContent: 'center', color: T.grey, fontSize: 12, fontStyle: 'italic',
+              textAlign: 'center', padding: 20, fontFamily: "'Fraunces', serif", lineHeight: 1.6,
+            }}>
+              Marcela's photograph<br />(informal · not a suit)
+            </div>
           </div>
-          <a
-            href="#booking"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: T.teal, color: '#fff',
-              fontFamily: 'inherit', fontWeight: 700, fontSize: 15,
-              padding: '14px 24px', borderRadius: 8,
-              textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
-              transition: 'opacity 0.15s',
-            }}
-            onMouseOver={e => { e.currentTarget.style.opacity = '0.88'; }}
-            onMouseOut={e => { e.currentTarget.style.opacity = '1'; }}
-          >
-            Book a free call with Marcela <Icon.Arrow size={14} color="#fff" />
+
+          <div className="about-text">
+            <span className="sa-kicker">N° 05 · About</span>
+            <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.ink, marginBottom: 24 }}>
+              Hi — I'm Marcela.
+            </h2>
+
+            <p style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(17px, 2vw, 21px)', fontStyle: 'italic', color: T.sageDark, lineHeight: 1.65, marginBottom: 22 }}>
+              I built SafeAI because I watched too many small Irish business owners get told to spend thousands on AI compliance consultants who explained nothing in plain English.
+            </p>
+            <p style={{ fontSize: 16, color: T.inkSoft, lineHeight: 1.85, marginBottom: 16, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              I'm Polish. I live in Ireland. I'm not a lawyer, and that's deliberate — most of you don't need a lawyer, you need someone to translate the EU AI Act into actual sentences and give you the documents to print, sign, and file.
+            </p>
+            <p style={{ fontSize: 16, color: T.inkSoft, lineHeight: 1.85, marginBottom: 16, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              I built SafeAI for the bookkeeper in Drogheda, the hair salon in Cork, the Polish builder in Mullingar, the GP in Kilkenny. Anyone running a small business who is being told they need to "do something about AI" and doesn't want to spend €5,000 finding out what.
+            </p>
+            <p style={{ fontSize: 16, color: T.inkSoft, lineHeight: 1.85, marginBottom: 28, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              If you'd rather read this in Polish,{' '}
+              <a href="#polski" style={{ color: T.terra, textDecoration: 'underline' }}>scroll a little further</a>.
+            </p>
+
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <a href="#booking" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 26px' }}>Book a call with Marcela</a>
+              <a href="#products" className="sa-btn-outline" style={{ fontSize: 14, padding: '13px 22px' }}>See the products</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Section 6 — Polski ── */
+function PolskiSection() {
+  return (
+    <section id="polski" lang="pl" className="sa-section" style={{ background: T.ink }}>
+      <div className="sa-max">
+        <span style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 12, color: T.terra, display: 'block', marginBottom: 16 }}>
+          Nr 06 · Po polsku
+        </span>
+        <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.paper, marginBottom: 22 }}>
+          AI compliance dla polskich firm w Irlandii.
+        </h2>
+        <p style={{ fontSize: 18, color: 'rgba(250,247,242,0.85)', lineHeight: 1.8, maxWidth: 680, marginBottom: 20, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          Jestem Marcela. Pomagam polskim przedsiębiorcom w Irlandii spełnić wymogi unijnego AI Act (Rozporządzenie 2024/1689) bez prawników i bez konsultantów za €5,000.
+        </p>
+        <p style={{ fontSize: 16, color: 'rgba(250,247,242,0.75)', lineHeight: 1.85, maxWidth: 680, marginBottom: 16, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          Prowadzisz salon kosmetyczny? Fryzjera? Sklep? Firmę budowlaną? Działalność jednoosobową? Jeśli ty lub twoi pracownicy używacie ChatGPT, Copilot, Gemini lub jakichkolwiek narzędzi z AI — Artykuł 4 dotyczy ciebie od 2 lutego 2025 roku.
+        </p>
+        <p style={{ fontSize: 16, color: 'rgba(250,247,242,0.75)', lineHeight: 1.85, maxWidth: 680, marginBottom: 36, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          Pakiet SafeAI dla małych firm (€19) zawiera szablon polityki użytkowania AI, rejestr szkoleń zgodny z Artykułem 4, formularz dla pracowników i jednostronicowe podsumowanie zgodności. Wszystko po polsku. Wypełnij, podpisz, schowaj do segregatora. Gotowe.
+        </p>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 24 }}>
+          <a href="#quiz" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 28px' }}>
+            Sprawdź swoją zgodność (2 minuty) <Icon.Arrow size={15} color="#fff" />
+          </a>
+          <a href="#products" style={{
+            fontSize: 15, fontWeight: 600, color: 'rgba(250,247,242,0.8)', textDecoration: 'none',
+            border: '1.5px solid rgba(250,247,242,0.3)', borderRadius: 4, padding: '13px 28px',
+            fontFamily: "'Hanken Grotesk', sans-serif", transition: 'border-color 0.15s',
+          }}
+          onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(250,247,242,0.7)'}
+          onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(250,247,242,0.3)'}>
+            Zobacz produkty
           </a>
         </div>
-
-        <p style={{ textAlign: 'center', fontSize: 12, color: T.muted, marginTop: 20 }}>
-          External tools published by the European Commission. SafeAI is not affiliated with the EU AI Office.
-        </p>
+        <a href="/pl/" style={{ fontSize: 13, color: T.terra, textDecoration: 'underline', fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          Pełna wersja po polsku → /pl/
+        </a>
       </div>
     </section>
   );
 }
 
-/* ── Blog Section ── */
+/* ── Section 7 — FAQ (native <details> accordions — no JS needed) ── */
+function FAQSection() {
+  const faqs = [
+    {
+      q: 'Does the EU AI Act really apply to my small business?',
+      a: 'Yes. If you or your staff use any tool with AI in it — ChatGPT, Copilot, Gemini, AI features in your booking system, AI photo retouching, AI in your accounting software — the EU AI Act applies. There is no SME exemption. Article 4 has been enforceable since 2 February 2025.',
+    },
+    {
+      q: 'I only use ChatGPT occasionally. Do I really need this?',
+      a: "If you use it for anything that touches client data, customer communication, marketing copy, or business decisions — yes. Article 4 requires you to demonstrate AI literacy among your staff. \"Occasionally\" doesn't exempt you; documentation does.",
+    },
+    {
+      q: 'Are you a lawyer? Is this legal advice?',
+      a: "No, and no. I'm not a lawyer, and that's deliberate. SafeAI provides general information and templates, not legal advice. Most small businesses don't need bespoke legal counsel — they need plain-English documents to print, sign, and file. For anything sector-specific or contentious, consult a solicitor.",
+    },
+    {
+      q: 'How is this different from ComplianceKit.ie?',
+      a: "ComplianceKit is GDPR software — different regulation, different model (monthly subscription). SafeAI covers the EU AI Act specifically, with one-time purchases instead of subscriptions. If you need both, buy both. They don't overlap.",
+    },
+    {
+      q: 'How is this different from Agentive.ie?',
+      a: "Agentive delivers 4-week consulting engagements for companies with 50+ staff. SafeAI is for businesses too small for that — 1 to 10 people, sole traders, micro-SMEs. Different segment, different price, same regulation.",
+    },
+    {
+      q: "What's the actual penalty for not complying?",
+      a: "Up to €7.5 million or 1.5% of annual global turnover, whichever is higher, for Article 4 violations. In practice, regulators are far more likely to issue enforcement notices and request documentation. The fine cap exists to make the regulation taken seriously.",
+    },
+    {
+      q: 'Czy materiały są dostępne po polsku?',
+      a: 'Tak — pakiet SafeAI dla małych firm (€19) dostępny jest po polsku. Jestem Polką mieszkającą w Irlandii i pisałam te dokumenty z myślą o polskich przedsiębiorcach prowadzących firmy w Irlandii.',
+    },
+    {
+      q: 'Is the certificate from the €69 course a "real" qualification?',
+      a: "It's evidence that you completed the training. That's exactly what Article 4 requires — proof of AI literacy. It is not a regulated credential (like a CPA or solicitor's qualification). Don't mistake it for one. Do file it in your compliance folder.",
+    },
+  ];
+  return (
+    <section id="faq" className="sa-section" style={{ background: T.paperWarm, borderTop: `1px solid ${T.line}` }}>
+      <div style={{ maxWidth: 760, margin: '0 auto' }}>
+        <span className="sa-kicker">N° 07 · FAQ</span>
+        <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.ink, marginBottom: 40 }}>
+          Questions you actually have.
+        </h2>
+        <div>
+          {faqs.map((f, i) => (
+            <details key={i} className="faq-item">
+              <summary>{f.q}</summary>
+              <p className="faq-body">{f.a}</p>
+            </details>
+          ))}
+        </div>
+        <div style={{ marginTop: 32 }}>
+          <a href="faq.html" style={{ fontSize: 14, color: T.terra, textDecoration: 'none', fontWeight: 600, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+            See all questions →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Section 8 — Final CTA ── */
+function FinalCTASection() {
+  return (
+    <section id="start" className="sa-section" style={{ background: T.ink }}>
+      <div style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+        <span style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 12, color: T.terra, display: 'block', marginBottom: 16 }}>
+          N° 08 · Start here
+        </span>
+        <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(28px, 3.5vw, 44px)', color: T.paper, marginBottom: 20 }}>
+          See where you stand in 120 seconds.
+        </h2>
+        <p style={{ fontSize: 17, color: 'rgba(250,247,242,0.8)', lineHeight: 1.8, marginBottom: 36, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          The 2-minute AI risk check is free. No email needed for the score. If you're already compliant, you'll know. If you're not, you'll know exactly what's missing.
+        </p>
+        <a href="#quiz" className="sa-btn-primary" style={{ fontSize: 16, padding: '16px 36px' }}>
+          Take the 2-minute risk check <Icon.Arrow size={16} color="#fff" />
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/* ── Knowledge Base ── */
 function BlogSection() {
   function fmtDate(d) {
     return new Date(d).toLocaleDateString('en-IE', { day: 'numeric', month: 'short', year: 'numeric' });
   }
-
   const posts = [
     {
       url: 'posts/why-ai-implementation-should-start-with-training-your-managers.html',
       cat: 'AI Strategy',
       title: 'Why AI Implementation Should Start With Training Your Managers',
       excerpt: 'Most organisations roll out AI tools to staff and hope for the best. The ones that get it right do something different first: they train the managers.',
-      date: '2026-05-14',
-      time: '5 min',
+      date: '2026-05-14', time: '5 min',
     },
     {
       url: 'posts/where-should-you-actually-start-with-ai-in-your-business.html',
       cat: 'Getting Started',
       title: 'Where Should You Actually Start With AI in Your Business?',
       excerpt: 'The instinct is to start with whatever feels most exciting. That instinct produces a lot of failed AI projects. Here is a better approach.',
-      date: '2026-05-14',
-      time: '5 min',
+      date: '2026-05-14', time: '5 min',
     },
     {
       url: 'posts/four-rules-every-staff-member-needs-before-they-use-ai-at-work.html',
       cat: 'Getting Started',
       title: 'Four Rules Every Staff Member Needs Before They Use AI at Work',
       excerpt: 'Before the policy documents and compliance checklists — four simple habits that stop the most common AI mistakes before they happen.',
-      date: '2026-05-14',
-      time: '4 min',
+      date: '2026-05-14', time: '4 min',
     },
     {
       url: 'posts/how-to-do-an-ai-security-audit-in-your-business.html',
       cat: 'Getting Organised',
       title: 'How to Do an AI Security Audit in Your Business (Without Hiring a Consultant)',
       excerpt: 'A four-part framework for finding out which AI tools your team is really using, what data is flowing through them, and what to do about it.',
-      date: '2026-05-14',
-      time: '5 min',
+      date: '2026-05-14', time: '5 min',
     },
     {
       url: 'posts/the-real-risks-of-using-ai-blindly-a-wake-up-call-for-irish-small-businesses.html',
       cat: 'AI Risk',
       title: 'The Real Risks of Using AI Blindly: A Wake-Up Call for Irish Small Businesses',
       excerpt: 'AI can draft emails, design graphics and answer customer queries — but unchecked use creates real risks around hallucinations, privacy, transparency, bias and brand trust.',
-      date: '2026-05-05',
-      time: '4 min',
+      date: '2026-05-05', time: '4 min',
     },
     {
       url: 'posts/the-eu-ai-act-what-every-irish-small-business-needs-to-know-without-the-legal-jargon.html',
       cat: 'EU AI Act',
       title: 'The EU AI Act: What Every Irish Small Business Needs to Know (Without the Legal Jargon)',
       excerpt: 'A practical explanation of how everyday AI use can create obligations for Irish businesses, schools and organisations — and the simple steps to take now.',
-      date: '2026-05-04',
-      time: '4 min',
+      date: '2026-05-04', time: '4 min',
     },
   ];
 
   return (
-    <section id="knowledge-base" style={{ background: T.cream, padding: '80px 24px' }}>
-      <div style={{ maxWidth: 1020, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p className="sa-eyebrow">Knowledge Base</p>
-          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', fontWeight: 700, color: T.charcoal, marginBottom: 0 }}>Practical AI guides for Irish organisations</h2>
+    <section id="knowledge-base" className="sa-section" style={{ background: T.paper, borderTop: `1px solid ${T.line}` }}>
+      <div className="sa-max">
+        <div style={{ marginBottom: 48 }}>
+          <span className="sa-kicker">Knowledge base</span>
+          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', color: T.ink }}>
+            Practical AI guides for Irish organisations
+          </h2>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))', gap: 20, marginBottom: 40 }}>
           {posts.map((p, i) => (
-            <a key={i} href={p.url} className="sa-card blog-card" style={{ padding: '22px 24px', textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
-              <span className="sa-tag sa-tag-teal" style={{ marginBottom: 12, display: 'inline-block', alignSelf: 'flex-start' }}>{p.cat}</span>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: T.charcoal, lineHeight: 1.5, marginBottom: 10, flexGrow: 1 }}>{p.title}</h3>
-              <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.65, marginBottom: 16 }}>{p.excerpt}</p>
+            <a key={i} href={p.url} className="blog-card" style={{
+              background: T.paperWarm, border: `1px solid ${T.line}`, borderRadius: 4,
+              padding: '22px 24px', textDecoration: 'none', display: 'flex', flexDirection: 'column',
+            }}>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: T.terra, marginBottom: 12, display: 'inline-block', fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                {p.cat}
+              </span>
+              <h3 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 15, fontWeight: 700, color: T.ink, lineHeight: 1.5, marginBottom: 10, flexGrow: 1 }}>
+                {p.title}
+              </h3>
+              <p style={{ fontSize: 13, color: T.grey, lineHeight: 1.65, marginBottom: 16, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                {p.excerpt}
+              </p>
               <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginTop: 'auto' }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: T.muted }}><Icon.Calendar />{fmtDate(p.date)}</span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: T.muted }}><Icon.Clock />{p.time} read</span>
-                <span style={{ fontSize: 12, color: T.teal, fontWeight: 600, marginLeft: 'auto' }}>Read →</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: T.grey }}><Icon.Calendar />{fmtDate(p.date)}</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: T.grey }}><Icon.Clock />{p.time} read</span>
+                <span style={{ fontSize: 12, color: T.terra, fontWeight: 600, marginLeft: 'auto', fontFamily: "'Hanken Grotesk', sans-serif" }}>Read →</span>
               </div>
             </a>
           ))}
@@ -924,133 +1022,13 @@ function BlogSection() {
         <div style={{ textAlign: 'center' }}>
           <a href="blog.html" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: T.navy, color: T.white,
-            fontFamily: 'inherit', fontWeight: 700, fontSize: 15,
-            padding: '14px 32px', borderRadius: 8, textDecoration: 'none',
-            transition: 'opacity 0.15s',
+            background: T.ink, color: T.paper, fontFamily: "'Hanken Grotesk', sans-serif",
+            fontWeight: 700, fontSize: 15, padding: '14px 32px', borderRadius: 4,
+            textDecoration: 'none', transition: 'opacity 0.15s',
           }}
           onMouseOver={e => e.currentTarget.style.opacity = '0.85'}
-          onMouseOut={e => e.currentTarget.style.opacity = '1'}
-          >
-            Browse all guides <Icon.Arrow size={14} color={T.white} />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── About Section ── */
-function AboutSection() {
-  const creds = [
-    { label: '5 years in the European Parliament' },
-    { label: "Master's in Public Administration (EU Legal System)" },
-    { label: 'AI in Business — Linköping University, Sweden' },
-    { label: 'Digital Transformation — Bologna University, Italy' },
-    { label: 'Based in Cork, Ireland' },
-    { label: 'Bilingual — English & Polish' },
-  ];
-  return (
-    <section id="about" style={{ background: T.white, padding: '80px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 56, alignItems: 'start' }}>
-        <div>
-          <div style={{ aspectRatio: '3/4', background: T.cream, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, border: '1.5px dashed #b0bec5', color: T.muted, fontSize: 13, fontStyle: 'italic', textAlign: 'center', padding: 16 }}>
-            Marcela's photograph
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {creds.map((c, i) => (
-              <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                <Icon.Check size={18} />
-                <span style={{ fontSize: 13, color: T.charcoal, lineHeight: 1.5 }}>{c.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="sa-eyebrow">About Marcela</p>
-          <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: T.charcoal, marginBottom: 20, textWrap: 'balance' }}>
-            Making complex regulation make sense to the people it actually affects.
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, fontSize: 15, color: T.ink, lineHeight: 1.85 }}>
-            <p>I spent five years in the European Parliament, where I learned something that still shapes how I work: regulation only delivers its purpose when ordinary people can understand and act on it. The EU AI Act is no different — it exists for a reason, but it will only work if small organisations can make sense of what it actually asks of them.</p>
-            <blockquote style={{ borderLeft: `4px solid ${T.teal}`, paddingLeft: 20, fontStyle: 'italic', fontWeight: 300, fontSize: 16, color: T.charcoal, lineHeight: 1.75 }}>
-              "AI is powerful. Used responsibly, it can genuinely help small organisations. Used carelessly, it can quietly risk everything — your data, your customers' trust, your reputation."
-            </blockquote>
-            <p>I hold a Master's in Public Administration with a focus on the EU Legal System, and have recently completed micro-credentials in AI in Business (Linköping University, Sweden) and Digital Transformation (Bologna University, Italy). I am not a lawyer — and for most of the people I work with, that is an advantage. I explain what the Act means in practice, not in a legal brief.</p>
-            <p>I run SafeAI from Cork, working with businesses, schools, and community organisations across Ireland. The goal is always the same: leave your team with something they can actually use the next morning.</p>
-            <p style={{ fontSize: 13, fontStyle: 'italic', color: T.teal }}>No jargon. No upselling. Practical guidance you can actually use.</p>
-          </div>
-          <div style={{ marginTop: 28, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#booking" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 26px' }}>Book a call with Marcela</a>
-            <a href="#free-tools" className="sa-btn-ghost" style={{ fontSize: 14, border: `1.5px solid ${T.teal}`, borderRadius: 6, padding: '13px 22px' }}>Download a free guide</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── FAQ Section ── */
-function FAQSection() {
-  const R = React;
-  const [open, setOpen] = R.useState(null);
-  const faqs = [
-    { q: 'Do I actually have EU AI Act obligations as a small business?', a: 'Most likely, yes. If you use AI tools commercially — including general-purpose tools like ChatGPT — the EU AI Act imposes obligations on you. The most immediate is Article 4, which requires AI literacy for all staff using AI in their work. SafeAI provides general information and training; for legal advice specific to your situation, consult a solicitor.' },
-    { q: 'Is SafeAI a law firm?', a: 'No. SafeAI is an AI awareness and training service — not a law firm, not a compliance auditor, and not a GDPR consultant. Marcela helps organisations understand what AI tools they use, what the EU AI Act says about AI literacy, and how to put basic safe-use practices in place. For legal advice on your specific situation, you need a solicitor.' },
-    { q: 'How long does a workshop take?', a: '2.5 hours, on-site or remote. We work with teams of up to 20 people. Your team maps every AI tool in use, discusses safe practices, and agrees a draft Acceptable Use Policy to build on together.' },
-    { q: 'What if I only use ChatGPT occasionally?', a: "Even occasional use can create obligations, particularly around data protection (GDPR) and transparency. The EU AI Act's Article 4 AI literacy requirement applies to anyone using AI in a commercial context — there's no minimum usage threshold." },
-    { q: 'Do you work with schools and community organisations?', a: 'Yes — education and community organisations are two of our three core audiences. We have a specific guide for educational settings (primary, post-primary, and further education) and experience working with non-profits and GAA clubs.' },
-    { q: 'Can I get something for free before committing?', a: "Absolutely. Download the free Irish SME AI Risk Checklist or the EU AI Act field guide from the Free Tools section. You'll get a practical sense of where your organisation stands with no obligation." },
-  ];
-
-  return (
-    <section id="faq" style={{ background: T.cream, padding: '80px 24px' }}>
-      <div style={{ maxWidth: 760, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <p className="sa-eyebrow">FAQ</p>
-          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 38px)', fontWeight: 700, color: T.charcoal }}>Common questions</h2>
-        </div>
-        <div>
-          {faqs.map((f, i) => (
-            <div key={i} className="faq-item">
-              <div className="faq-q" onClick={() => setOpen(open === i ? null : i)}>
-                <span style={{ fontSize: 15, fontWeight: 600, color: T.charcoal, lineHeight: 1.5 }}>{f.q}</span>
-                <span className="faq-chevron"><Icon.Plus open={open === i} /></span>
-              </div>
-              <div className="faq-a" style={{ maxHeight: open === i ? 300 : 0, paddingBottom: open === i ? 20 : 0, overflow: 'hidden', transition: 'max-height 0.3s ease, padding-bottom 0.3s ease' }}>
-                <p style={{ fontSize: 14, color: T.ink, lineHeight: 1.85 }}>{f.a}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{ textAlign: 'center', marginTop: 40 }}>
-          <a href="faq.html" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, fontWeight: 600, color: T.teal, textDecoration: 'none' }}>
-            See all 49 questions &rarr;
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── CTA Strip ── */
-function CTAStrip() {
-  return (
-    <section style={{ background: T.teal, padding: '60px 24px' }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-        <h2 style={{ fontSize: 'clamp(22px, 3vw, 34px)', fontWeight: 700, color: T.white, marginBottom: 10 }}>
-          Start using AI more safely and confidently
-        </h2>
-        <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', marginBottom: 36, maxWidth: 460, margin: '0 auto 36px' }}>
-          Practical AI awareness training for Irish organisations.
-        </p>
-        <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="#free-tools"
-            style={{ display: 'inline-flex', alignItems: 'center', background: T.white, color: T.teal, fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: 15, padding: '15px 28px', borderRadius: 6, textDecoration: 'none', transition: 'opacity 0.15s' }}>
-            Download the Free AI Checklist
-          </a>
-          <a href="https://cal.com/safeai/workshop" target="_blank" rel="noopener noreferrer" className="sa-btn-outline" style={{ fontSize: 15, padding: '13px 28px' }}>
-            Book a Workshop
+          onMouseOut={e => e.currentTarget.style.opacity = '1'}>
+            Browse all guides <Icon.Arrow size={14} color={T.paper} />
           </a>
         </div>
       </div>
@@ -1060,104 +1038,106 @@ function CTAStrip() {
 
 /* ── Footer ── */
 function Footer() {
-  const qlinks = [
-    { label: 'Services', href: '#services' },
-    { label: 'Free Tools', href: '#free-tools' },
-    { label: 'Guides', href: '#guides' },
-    { label: 'Knowledge Base', href: 'blog.html' },
-    { label: 'About', href: '#about' },
-    { label: 'FAQ', href: 'faq.html' },
-    { label: 'Why Train?', href: 'why-train.html' },
+  const products = [
+    { label: '2-Min Risk Check', href: '#quiz' },
+    { label: 'Sole Trader Pack (€19)', href: '#' },
+    { label: 'EU AI Act Course (€69)', href: '#' },
   ];
+  const sectors = [
+    { label: 'Beauty salons', href: '#audience' },
+    { label: 'Sole traders', href: '#audience' },
+    { label: 'Accountants', href: '#audience' },
+    { label: 'Polskie firmy', href: '/pl/' },
+  ];
+  const about = [
+    { label: 'About Marcela', href: '#about' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Contact', href: 'mailto:marcela@safeai.ie' },
+    { label: 'Privacy', href: 'privacy.html' },
+  ];
+  const linkStyle = { fontSize: 13, color: 'rgba(250,247,242,0.55)', textDecoration: 'none', fontFamily: "'Hanken Grotesk', sans-serif", transition: 'color 0.15s' };
   return (
-    <footer style={{ background: T.navy, padding: '56px 24px 32px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 32, marginBottom: 40 }}>
+    <footer style={{ background: T.ink }}>
+      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '56px 24px 32px' }}>
+        <div className="footer-grid">
           <div>
-            <div style={{ marginBottom: 16, display: 'inline-block', background: T.white, borderRadius: 12, padding: '10px 16px' }}>
-              <img
-                src="safeai-logo.svg"
-                alt="SafeAI logo"
-                style={{ height: 52, width: 'auto', display: 'block' }}
-              />
+            <div style={{ marginBottom: 16, display: 'inline-block', background: T.paper, borderRadius: 4, padding: '10px 14px' }}>
+              <img src="safeai-logo.svg" alt="SafeAI logo" style={{ height: 36, width: 'auto', display: 'block' }} />
             </div>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>Cork, Ireland</p>
+            <p style={{ fontSize: 13, color: 'rgba(250,247,242,0.55)', lineHeight: 1.75, maxWidth: 240, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              Plain-English AI compliance for Irish micro-businesses. Built in Ireland by Marcela. Polish-friendly.
+            </p>
           </div>
+
           <div>
-            <h4 style={{ fontSize: 13, fontWeight: 600, color: T.white, marginBottom: 14 }}>Quick Links</h4>
+            <h4 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 11, fontWeight: 700, color: T.paper, marginBottom: 14, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Products</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {qlinks.map(l => <a key={l.label} href={l.href} style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.15s' }}
-                onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.55)'}>{l.label}</a>)}
+              {products.map(l => <a key={l.label} href={l.href} style={linkStyle} onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(250,247,242,0.55)'}>{l.label}</a>)}
             </div>
           </div>
+
           <div>
-            <h4 style={{ fontSize: 13, fontWeight: 600, color: T.white, marginBottom: 14 }}>Contact</h4>
+            <h4 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 11, fontWeight: 700, color: T.paper, marginBottom: 14, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Sectors</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <a href="mailto:marcela@safeai.ie" style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}>marcela@safeai.ie</a>
-              <a href="#booking" style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}>Book a call ↗</a>
+              {sectors.map(l => <a key={l.label} href={l.href} style={linkStyle} onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(250,247,242,0.55)'}>{l.label}</a>)}
+            </div>
+          </div>
+
+          <div>
+            <h4 style={{ fontFamily: "'Hanken Grotesk', sans-serif", fontSize: 11, fontWeight: 700, color: T.paper, marginBottom: 14, letterSpacing: '0.1em', textTransform: 'uppercase' }}>About</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {about.map(l => <a key={l.label} href={l.href} style={linkStyle} onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(250,247,242,0.55)'}>{l.label}</a>)}
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
               {[
-                { icon: <Icon.Facebook size={16} color="rgba(255,255,255,0.6)" />, href: 'https://www.facebook.com/SafeAI.Ireland/', label: 'Facebook' },
-                { icon: <Icon.Instagram size={16} color="rgba(255,255,255,0.6)" />, href: 'https://www.instagram.com/safeai.ireland', label: 'Instagram' },
+                { icon: <Icon.Facebook size={16} color="rgba(250,247,242,0.6)" />, href: 'https://www.facebook.com/SafeAI.Ireland/', label: 'Facebook' },
+                { icon: <Icon.Instagram size={16} color="rgba(250,247,242,0.6)" />, href: 'https://www.instagram.com/safeai.ireland', label: 'Instagram' },
               ].map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                  style={{ width: 34, height: 34, borderRadius: 7, background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.15s', textDecoration: 'none' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.16)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}>
+                  style={{ width: 34, height: 34, borderRadius: 4, background: 'rgba(250,247,242,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', transition: 'background 0.15s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(250,247,242,0.16)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(250,247,242,0.08)'}>
                   {s.icon}
                 </a>
               ))}
             </div>
           </div>
         </div>
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24, display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-          {[
-            { text: '© 2026 SafeAI' },
-            { text: 'General information, not legal advice.' },
-            { text: 'Privacy Policy', href: 'privacy.html' },
-            { text: 'Terms', href: 'terms.html' },
-          ].map((item, i) => (
-            <React.Fragment key={i}>
-              {i > 0 && <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 11 }}>·</span>}
-              {item.href
-                ? <a href={item.href} style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'color 0.15s' }} onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}>{item.text}</a>
-                : <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{item.text}</span>
-              }
-            </React.Fragment>
-          ))}
+
+        {/* Disclaimer */}
+        <div style={{ borderLeft: `3px solid ${T.terra}`, padding: '14px 16px', borderRadius: '0 4px 4px 0', background: 'rgba(198,107,61,0.07)', marginBottom: 24 }}>
+          <p style={{ fontSize: 12, color: 'rgba(250,247,242,0.6)', lineHeight: 1.75, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+            <strong style={{ color: 'rgba(250,247,242,0.85)' }}>Not legal advice.</strong>{' '}
+            SafeAI provides general information and templates only. For situation-specific legal questions, consult a solicitor.
+          </p>
+        </div>
+
+        <div style={{ borderTop: '1px solid rgba(250,247,242,0.08)', paddingTop: 20, display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: 11, color: 'rgba(250,247,242,0.35)', fontFamily: "'Hanken Grotesk', sans-serif" }}>
+            © 2026 SafeAI.ie · Built with care in Ireland
+          </span>
+          <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
+            <a href="/pl/" lang="pl" style={{ fontSize: 11, color: 'rgba(250,247,242,0.45)', textDecoration: 'none', fontFamily: "'Hanken Grotesk', sans-serif" }}
+              onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(250,247,242,0.45)'}>Polski</a>
+            <span style={{ fontSize: 11, color: 'rgba(250,247,242,0.2)' }}>/</span>
+            <a href="/" lang="en" style={{ fontSize: 11, color: 'rgba(250,247,242,0.45)', textDecoration: 'none', fontFamily: "'Hanken Grotesk', sans-serif" }}
+              onMouseEnter={e => e.target.style.color = '#fff'} onMouseLeave={e => e.target.style.color = 'rgba(250,247,242,0.45)'}>English</a>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
 
-/* ── Social Proof Bar ── */
-function SocialProofBar() {
-  const sectors = ['SMEs & Sole Traders', 'Schools & Further Education', 'Community Organisations', 'Non-profits & GAA Clubs', 'Cork, Dublin & Remote'];
-  return (
-    <div style={{ background: '#fff', borderBottom: '1px solid #e8edf2', padding: '18px 24px' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
-        <span style={{ fontSize: 11, color: T.muted, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginRight: 6 }}>Serving</span>
-        {sectors.map(function(s, i) {
-          return (
-            <span key={i} style={{ fontSize: 12, color: T.charcoal, background: T.cream, border: '1px solid #d8e4eb', borderRadius: 20, padding: '4px 14px' }}>{s}</span>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/* ── Booking Modal (triggered by href="#booking") ── */
+/* ── Booking Modal (cal.com — preserved) ── */
 function BookingModal() {
   const R = React;
   const [open, setOpen] = R.useState(false);
-  R.useEffect(function() {
+  R.useEffect(() => {
     function check() { setOpen(window.location.hash === '#booking'); }
     check();
     window.addEventListener('hashchange', check);
-    return function() { window.removeEventListener('hashchange', check); };
+    return () => window.removeEventListener('hashchange', check);
   }, []);
   function close() {
     window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -1165,11 +1145,11 @@ function BookingModal() {
   }
   if (!open) return null;
   return (
-    <div onClick={close} style={{ position: 'fixed', inset: 0, background: 'rgba(27,58,107,0.6)', zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-      <div onClick={function(e) { e.stopPropagation(); }} style={{ background: T.white, borderRadius: 14, width: '100%', maxWidth: 780, height: '88vh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ padding: '14px 20px', borderBottom: '1px solid #e8edf2', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
-          <span style={{ fontSize: 15, fontWeight: 600, color: T.charcoal }}>Book a call with Marcela</span>
-          <button onClick={close} style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: T.muted, lineHeight: 1, padding: '0 4px', fontFamily: 'Poppins, sans-serif' }}>&times;</button>
+    <div onClick={close} style={{ position: 'fixed', inset: 0, background: 'rgba(15,42,68,0.65)', zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: T.paper, borderRadius: 6, width: '100%', maxWidth: 780, height: '88vh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ padding: '14px 20px', borderBottom: `1px solid ${T.line}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+          <span style={{ fontSize: 15, fontWeight: 600, color: T.ink, fontFamily: "'Hanken Grotesk', sans-serif" }}>Book a call with Marcela</span>
+          <button onClick={close} style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: T.grey, lineHeight: 1, padding: '0 4px', fontFamily: "'Hanken Grotesk', sans-serif" }} aria-label="Close">&times;</button>
         </div>
         <iframe src="https://cal.com/safeai/call?embed=true" style={{ flex: 1, border: 'none', width: '100%' }} title="Book a call with Marcela" />
       </div>
@@ -1177,89 +1157,51 @@ function BookingModal() {
   );
 }
 
-/* ── Cookie Banner (GDPR) ── */
+/* ── Cookie Banner (GDPR — preserved) ── */
 function CookieBanner() {
   const R = React;
   const [visible, setVisible] = R.useState(false);
-  R.useEffect(function() { setVisible(!localStorage.getItem('safeai-cookie-ok')); }, []);
+  R.useEffect(() => { setVisible(!localStorage.getItem('safeai-cookie-ok')); }, []);
   function accept() { localStorage.setItem('safeai-cookie-ok', '1'); setVisible(false); }
   if (!visible) return null;
   return (
-    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 500, background: T.navy, padding: '14px 24px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', boxShadow: '0 -4px 20px rgba(0,0,0,0.2)' }}>
-      <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, flex: 1, margin: 0 }}>
-        We use essential cookies to keep this site working. By continuing you agree to our <a href="privacy.html" style={{ color: T.teal, textDecoration: 'none' }}>Privacy Policy</a>.
+    <div role="dialog" aria-label="Cookie consent" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 500, background: T.ink, padding: '14px 24px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', borderTop: `1px solid rgba(250,247,242,0.1)` }}>
+      <p style={{ fontSize: 13, color: 'rgba(250,247,242,0.75)', lineHeight: 1.6, flex: 1, margin: 0, fontFamily: "'Hanken Grotesk', sans-serif" }}>
+        We use essential cookies to keep this site working. By continuing you agree to our{' '}
+        <a href="privacy.html" style={{ color: T.terra, textDecoration: 'none' }}>Privacy Policy</a>.
       </p>
       <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
         <button onClick={accept} className="sa-btn-primary" style={{ fontSize: 13, padding: '9px 20px' }}>Accept</button>
-        <button onClick={accept} style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Poppins, sans-serif', padding: '9px 4px' }}>Dismiss</button>
+        <button onClick={accept} style={{ fontSize: 13, color: 'rgba(250,247,242,0.5)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Hanken Grotesk', sans-serif", padding: '9px 4px' }}>Dismiss</button>
       </div>
     </div>
   );
 }
 
-/* ── WhatsApp Floating Button ── */
+/* ── WhatsApp floating button (preserved — update phone number) ── */
 function WhatsAppButton() {
-  const phone = '353000000000'; // replace with Marcela's WhatsApp number e.g. 353851234567
+  const phone = '353000000000';
   const msg = 'Hi Marcela, I found SafeAI and would like to ask a quick question.';
   return (
-    <a
-      href={'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg)}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp"
-      title="Chat on WhatsApp"
-      style={{ position: 'fixed', bottom: 88, right: 24, zIndex: 400, width: 52, height: 52, borderRadius: '50%', background: '#25D366', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 16px rgba(37,211,102,0.4)', textDecoration: 'none', transition: 'transform 0.15s' }}
-      onMouseEnter={function(e) { e.currentTarget.style.transform = 'scale(1.1)'; }}
-      onMouseLeave={function(e) { e.currentTarget.style.transform = 'scale(1)'; }}
-    >
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+    <a href={'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg)}
+      target="_blank" rel="noopener noreferrer"
+      aria-label="Chat with Marcela on WhatsApp"
+      style={{ position: 'fixed', bottom: 80, right: 24, zIndex: 400, width: 52, height: 52, borderRadius: '50%', background: '#25D366', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 16px rgba(37,211,102,0.35)', textDecoration: 'none', transition: 'transform 0.15s' }}
+      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
     </a>
   );
 }
 
-/* ── Newsletter Section ── */
-function NewsletterSection() {
-  const R = React;
-  const [email, setEmail] = R.useState('');
-  const [status, setStatus] = R.useState(null);
-  function handleSubmit() {
-    if (!email) return;
-    submitEmail(email, 'newsletter');
-    setStatus('sent');
-  }
-  return (
-    <section style={{ background: T.tealLight, padding: '56px 24px' }}>
-      <div style={{ maxWidth: 540, margin: '0 auto', textAlign: 'center' }}>
-        <p className="sa-eyebrow">Stay informed</p>
-        <h2 style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', fontWeight: 700, color: T.charcoal, marginBottom: 8 }}>
-          EU AI Act updates for Irish organisations
-        </h2>
-        <p style={{ fontSize: 14, color: T.muted, marginBottom: 28 }}>
-          Plain-English updates when the law changes. One email per month at most.
-        </p>
-        {status === 'sent' ? (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
-            <Icon.CheckCircle size={36} />
-            <span style={{ fontSize: 15, fontWeight: 600, color: T.charcoal }}>You are on the list!</span>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: 10, maxWidth: 420, margin: '0 auto' }}>
-            <input type="email" className="sa-input" placeholder="your@email.ie" value={email} onChange={function(e) { setEmail(e.target.value); }} onKeyDown={function(e) { if (e.key === 'Enter') handleSubmit(); }} />
-            <button onClick={handleSubmit} className="sa-btn-primary" style={{ flexShrink: 0, padding: '13px 20px', fontSize: 14 }}>Subscribe</button>
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
-// Export everything to window
+// Export to window
 Object.assign(window, {
-  T, Icon, Navbar, HeroSection, ProblemSection, TimelineSection,
-  QuizSection, ServicesSection, FreeToolsSection, GuidesSection,
-  OfficialResourcesSection, BlogSection, AboutSection, FAQSection, CTAStrip, Footer,
-  SocialProofBar, BookingModal, CookieBanner,
-  WhatsAppButton, NewsletterSection
+  T, Icon, submitEmail,
+  Navbar, HeroSection, QuizSection,
+  ArtifactsSection, ProductsSection, AudienceSection, HowItWorksSection,
+  AboutSection, PolskiSection, FAQSection, FinalCTASection,
+  BlogSection, Footer,
+  BookingModal, CookieBanner, WhatsAppButton,
 });

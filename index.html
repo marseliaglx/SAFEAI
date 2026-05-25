@@ -1,18 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IE">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SafeAI — EU AI Act Training & Compliance for Irish Organisations</title>
+  <title>SafeAI — EU AI Act compliance for Irish small businesses · from €19</title>
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://safeai.ie/" />
+  <link rel="alternate" hreflang="en-IE" href="https://safeai.ie/" />
+  <link rel="alternate" hreflang="pl" href="https://safeai.ie/pl/" />
+  <link rel="alternate" hreflang="x-default" href="https://safeai.ie/" />
+
+  <!-- Meta description -->
+  <meta name="description" content="EU AI Act compliance for Irish sole traders and small businesses. Plain-English templates from €19, one-time. Article 4 covered. Built in Ireland by Marcela. Available in Polish." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://safeai.ie/" />
+  <meta property="og:title" content="SafeAI — EU AI Act compliance for Irish small businesses" />
+  <meta property="og:description" content="Plain-English EU AI Act compliance for Irish sole traders and micro-businesses. Templates from €19, one-time. Article 4 covered. Available in Polish." />
+  <meta property="og:image" content="https://safeai.ie/safeai-logo.png" />
+  <meta property="og:locale" content="en_IE" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:site_name" content="SafeAI.ie" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SafeAI — EU AI Act compliance for Irish small businesses" />
+  <meta name="twitter:description" content="Plain-English EU AI Act compliance for Irish sole traders and micro-businesses. Templates from €19, one-time. Article 4 covered." />
+  <meta name="twitter:image" content="https://safeai.ie/safeai-logo.png" />
+
   <link rel="icon" type="image/png" href="safeai-logo.png" />
+
+  <!-- Fonts: Fraunces (display/headings) + Hanken Grotesk (body) — both support Polish diacritics -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- React + Babel via CDN (no build step) -->
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
   <script type="text/babel" src="safeai-components.jsx"></script>
   <script type="text/babel" src="tweaks-panel.jsx"></script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://safeai.ie/#org",
+        "name": "SafeAI",
+        "url": "https://safeai.ie",
+        "logo": "https://safeai.ie/safeai-logo.svg",
+        "founder": { "@type": "Person", "name": "Marcela" },
+        "areaServed": { "@type": "Country", "name": "Ireland" },
+        "knowsLanguage": ["en", "pl"],
+        "description": "Plain-English EU AI Act compliance for Irish sole traders and micro-businesses. Templates, training, and certificates from €19, one-time.",
+        "sameAs": [
+          "https://www.facebook.com/SafeAI.Ireland/",
+          "https://www.instagram.com/safeai.ireland"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://safeai.ie/#site",
+        "name": "SafeAI.ie",
+        "url": "https://safeai.ie",
+        "publisher": { "@id": "https://safeai.ie/#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": { "@type": "EntryPoint", "urlTemplate": "https://safeai.ie/?q={search_term_string}" },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://safeai.ie/#page",
+        "url": "https://safeai.ie/",
+        "name": "SafeAI — EU AI Act compliance for Irish small businesses",
+        "description": "Plain-English EU AI Act compliance for Irish sole traders and micro-businesses. Templates from €19, one-time. Article 4 covered.",
+        "inLanguage": "en-IE",
+        "isPartOf": { "@id": "https://safeai.ie/#site" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "SafeAI.ie", "item": "https://safeai.ie/" }]
+        }
+      },
+      {
+        "@type": "ItemList",
+        "name": "SafeAI Products",
+        "description": "EU AI Act compliance products for Irish small businesses",
+        "itemListElement": [
+          {
+            "@type": "ListItem", "position": 1,
+            "item": {
+              "@type": "Service",
+              "name": "2-Minute AI Risk Check",
+              "description": "Free interactive quiz — Article 4 risk score shown immediately, no email required.",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 2,
+            "item": {
+              "@type": "Service",
+              "name": "Sole Trader AI Compliance Pack",
+              "description": "AUP template, Article 4 training log, use policy form, sign-off page. Plain English. Available in Polish. For businesses with 1–10 staff.",
+              "offers": { "@type": "Offer", "price": "19", "priceCurrency": "EUR" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 3,
+            "item": {
+              "@type": "Service",
+              "name": "EU AI Act Compliance Course",
+              "description": "Five short videos, quiz, and printable certificate for each staff member's compliance folder.",
+              "offers": { "@type": "Offer", "price": "69", "priceCurrency": "EUR" }
+            }
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does the EU AI Act really apply to my small business?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. If you or your staff use any tool with AI in it — ChatGPT, Copilot, Gemini, AI features in your booking system, AI photo retouching, AI in your accounting software — the EU AI Act applies. There is no SME exemption. Article 4 has been enforceable since 2 February 2025." }
+          },
+          {
+            "@type": "Question",
+            "name": "I only use ChatGPT occasionally. Do I really need this?",
+            "acceptedAnswer": { "@type": "Answer", "text": "If you use it for anything that touches client data, customer communication, marketing copy, or business decisions — yes. Article 4 requires you to demonstrate AI literacy among your staff. \"Occasionally\" doesn't exempt you; documentation does." }
+          },
+          {
+            "@type": "Question",
+            "name": "Are you a lawyer? Is this legal advice?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No, and no. SafeAI provides general information and templates, not legal advice. Most small businesses don't need bespoke legal counsel — they need plain-English documents to print, sign, and file. For anything sector-specific or contentious, consult a solicitor." }
+          },
+          {
+            "@type": "Question",
+            "name": "How is this different from ComplianceKit.ie?",
+            "acceptedAnswer": { "@type": "Answer", "text": "ComplianceKit is GDPR software — different regulation, different model (monthly subscription). SafeAI covers the EU AI Act specifically, with one-time purchases instead of subscriptions." }
+          },
+          {
+            "@type": "Question",
+            "name": "How is this different from Agentive.ie?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Agentive delivers 4-week consulting engagements for companies with 50+ staff. SafeAI is for businesses too small for that — 1 to 10 people, sole traders, micro-SMEs. Different segment, different price, same regulation." }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the actual penalty for not complying?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Up to €7.5 million or 1.5% of annual global turnover, whichever is higher, for Article 4 violations. In practice, regulators are far more likely to issue enforcement notices and request documentation." }
+          },
+          {
+            "@type": "Question",
+            "name": "Czy materiały są dostępne po polsku?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Tak — pakiet SafeAI dla małych firm (€19) dostępny jest po polsku. Jestem Polką mieszkającą w Irlandii i pisałam te dokumenty z myślą o polskich przedsiębiorcach prowadzących firmy w Irlandii." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the certificate from the €69 course a \"real\" qualification?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It's evidence that you completed the training. That's exactly what Article 4 requires — proof of AI literacy. It is not a regulated credential. Do file it in your compliance folder." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body { margin: 0; padding: 0; }
   </style>
@@ -22,14 +182,9 @@
 <script type="text/babel">
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "heroHeadline": "Using AI in your organisation?",
-  "heroSub": "The EU AI Act may already apply to you.",
-  "primaryCTA": "Download the Free AI Risk Checklist",
-  "secondaryCTA": "Book AI Training",
-  "showBlog": true,
-  "showGuides": true,
   "showQuiz": true,
-  "accentColor": "#1B9AAA"
+  "showBlog": true,
+  "accentColor": "#C66B3D"
 }/*EDITMODE-END*/;
 
 function App() {
@@ -37,26 +192,26 @@ function App() {
 
   React.useEffect(() => {
     if (tweaks && tweaks.accentColor) {
-      document.documentElement.style.setProperty('--teal-override', tweaks.accentColor);
+      document.documentElement.style.setProperty('--terra', tweaks.accentColor);
     }
   }, [tweaks && tweaks.accentColor]);
 
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <SocialProofBar />
-      <ProblemSection />
-      {tweaks.showQuiz && <QuizSection />}
-      <ServicesSection />
-      <FreeToolsSection />
-      {tweaks.showGuides && <GuidesSection />}
-      <OfficialResourcesSection />
-      {tweaks.showBlog && <BlogSection />}
-      <AboutSection />
-      <FAQSection />
-      <CTAStrip />
-      <NewsletterSection />
+      <main>
+        <HeroSection />
+        {tweaks.showQuiz && <QuizSection />}
+        <ArtifactsSection />
+        <ProductsSection />
+        <AudienceSection />
+        <HowItWorksSection />
+        <AboutSection />
+        <PolskiSection />
+        <FAQSection />
+        <FinalCTASection />
+        {tweaks.showBlog && <BlogSection />}
+      </main>
       <Footer />
 
       <BookingModal />
@@ -64,16 +219,9 @@ function App() {
       <WhatsAppButton />
 
       <TweaksPanel>
-        <TweakSection title="Content">
-          <TweakText id="heroHeadline" label="Hero headline" value={tweaks.heroHeadline} onChange={v => setTweak('heroHeadline', v)} />
-          <TweakText id="heroSub" label="Hero sub-headline" value={tweaks.heroSub} onChange={v => setTweak('heroSub', v)} />
-          <TweakText id="primaryCTA" label="Primary CTA" value={tweaks.primaryCTA} onChange={v => setTweak('primaryCTA', v)} />
-          <TweakText id="secondaryCTA" label="Secondary CTA" value={tweaks.secondaryCTA} onChange={v => setTweak('secondaryCTA', v)} />
-        </TweakSection>
         <TweakSection title="Sections">
-          <TweakToggle id="showQuiz" label="Show Risk Checker" value={tweaks.showQuiz} onChange={v => setTweak('showQuiz', v)} />
-          <TweakToggle id="showGuides" label="Show Guides section" value={tweaks.showGuides} onChange={v => setTweak('showGuides', v)} />
-          <TweakToggle id="showBlog" label="Show Blog section" value={tweaks.showBlog} onChange={v => setTweak('showBlog', v)} />
+          <TweakToggle id="showQuiz" label="Show Quiz" value={tweaks.showQuiz} onChange={v => setTweak('showQuiz', v)} />
+          <TweakToggle id="showBlog" label="Show Blog" value={tweaks.showBlog} onChange={v => setTweak('showBlog', v)} />
         </TweakSection>
         <TweakSection title="Brand">
           <TweakColor id="accentColor" label="Accent colour" value={tweaks.accentColor} onChange={v => setTweak('accentColor', v)} />

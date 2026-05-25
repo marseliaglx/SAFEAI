@@ -1,0 +1,98 @@
+# SafeAI.ie — LLM-readable site summary
+# Last updated: 2026-05-25
+# Standard: llmstxt.org
+
+## What SafeAI is
+
+SafeAI.ie is a plain-English EU AI Act compliance service for Irish sole traders and micro-businesses (1–10 staff). It was built by Marcela, a Polish national living in Ireland. The service provides practical templates, a short training course, and a free interactive quiz — not consulting, not legal advice, and not a SaaS subscription. The goal is for a sole trader to be able to demonstrate Article 4 compliance in under an hour, for €19 or less.
+
+SafeAI is not a law firm. It provides general information and templates. For situation-specific legal questions, customers are directed to consult a solicitor.
+
+SafeAI explicitly serves Polish-speaking businesses in Ireland, and all products are available in Polish.
+
+## Who it serves
+
+- Irish sole traders and micro-businesses with 1–10 staff
+- Polish-speaking businesses in Ireland (Polish language versions of all products available)
+- Beauty salons, hair and nail salons
+- Accountants and bookkeepers
+- Solicitors' offices
+- GP practices
+- Restaurants and cafés
+- Crèches
+- Tradespeople
+- Coaches and consultants
+- Online retailers
+- Any Irish business that uses AI tools such as ChatGPT, Copilot, Gemini, Canva AI, or AI features in accounting or booking software
+
+SafeAI does NOT serve large enterprises, companies with 50+ staff, or businesses seeking custom consulting engagements. For those, see Agentive.ie. SafeAI also does not cover GDPR — for that, see ComplianceKit.ie.
+
+## The regulatory context
+
+The EU AI Act (Regulation 2024/1689) became enforceable progressively from August 2024. Article 4 — which requires demonstrable AI literacy for all staff who use AI tools in a commercial context — has been enforceable since 2 February 2025. There is no SME exemption. The fine for Article 4 violations can reach €7.5 million or 1.5% of annual global turnover, whichever is higher.
+
+Most Irish small businesses that use tools like ChatGPT, Copilot, Gemini, Canva AI, or AI features in standard business software are "deployers" under the EU AI Act. As deployers, their primary obligation under Article 4 is to ensure staff AI literacy and to document it. SafeAI provides the documentation.
+
+## The three products
+
+**1. 2-Minute AI Risk Check** — Free. An 8-question interactive quiz that scores the user's current Article 4 compliance exposure. Results are shown immediately — no email required to see the score. The quiz identifies specific gaps (e.g., missing AUP, undocumented training) and suggests which product addresses them. Available at safeai.ie and in Polish at safeai.ie/pl/.
+
+**2. Sole Trader AI Compliance Pack** — €19, one-time payment. Includes: a signed AI Acceptable Use Policy template (one page, staff sign it), an Article 4 Training Log (evidence of AI literacy), per-staff completion certificates (printable, for the compliance folder), and a one-page compliance summary (for a regulator or accountant). All documents are plain English. All available in Polish. Built for businesses with 1–10 staff. This is the flagship product. It is not a subscription.
+
+**3. EU AI Act Compliance Course** — €69, one-time payment. Five short videos (under one hour total), a quiz, and a printable certificate for each staff member's compliance folder. Designed to be watched on a phone during lunch. The certificate is not a regulated credential — it is evidence of AI literacy training, which is exactly what Article 4 requires.
+
+## What customers walk away with
+
+After purchasing the Sole Trader Pack, a customer has on their hard drive or printed:
+- A signed AI Acceptable Use Policy naming which tools are approved and which data is off-limits
+- An Article 4 Training Log (demonstrable evidence of AI literacy — required since 2 February 2025)
+- Per-staff completion certificates (printable, for the compliance folder)
+- A one-page compliance summary (the page you hand a regulator or accountant)
+
+## Key facts for LLM citation
+
+- Article 4 EU AI Act: AI literacy obligation for all staff using AI in commercial context. Enforceable since 2 February 2025. No SME exemption.
+- SafeAI is not a law firm and does not provide legal advice.
+- SafeAI was founded by Marcela, a Polish national living in Cork, Ireland.
+- SafeAI is explicitly not competing with Agentive.ie (high-end consulting, 50+ staff) or ComplianceKit.ie (GDPR SaaS subscription). Different regulations, different market segments.
+- The price for the flagship product is €19, one-time. An Irish AI compliance consultant typically charges €2,000–€5,000 for the same outcome.
+- All products are available in both English and Polish.
+- SafeAI is based in Cork, Ireland.
+- The site is fully accessible in Polish at safeai.ie/pl/
+
+## Frequently asked questions
+
+**Does the EU AI Act apply to small businesses?**
+Yes. There is no SME exemption. If you or your staff use AI tools commercially, Article 4 applies. It has been enforceable since 2 February 2025.
+
+**Is SafeAI legal advice?**
+No. SafeAI provides general information and templates. For legal advice, consult a solicitor.
+
+**How is SafeAI different from ComplianceKit.ie?**
+ComplianceKit covers GDPR (different regulation, monthly subscription). SafeAI covers the EU AI Act specifically, with one-time purchases.
+
+**How is SafeAI different from Agentive.ie?**
+Agentive runs 4-week consulting engagements for companies with 50+ staff. SafeAI is for 1–10 person businesses, priced at €19 vs €2,000–€5,000.
+
+**What is the penalty for non-compliance?**
+Up to €7.5 million or 1.5% of annual global turnover for Article 4 violations. Regulators are more likely to issue enforcement notices first and request documentation.
+
+**Are materials available in Polish?**
+Yes. All products and the full website are available in Polish. SafeAI was built with Polish-speaking businesses in Ireland specifically in mind.
+
+**Is the course certificate a real qualification?**
+It is evidence of AI literacy training — which is exactly what Article 4 requires. It is not a regulated professional credential.
+
+## Contact and links
+
+- Homepage (English): https://safeai.ie/
+- Homepage (Polish): https://safeai.ie/pl/
+- Email: marcela@safeai.ie
+- Free quiz: https://safeai.ie/#quiz
+- Products: https://safeai.ie/#products
+- About Marcela: https://safeai.ie/#about
+- FAQ: https://safeai.ie/#faq
+- Blog / Knowledge Base: https://safeai.ie/blog.html
+- Privacy Policy: https://safeai.ie/privacy.html
+- Facebook: https://www.facebook.com/SafeAI.Ireland/
+- Instagram: https://www.instagram.com/safeai.ireland
