@@ -4,6 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SafeAI — EU AI Act Training & Compliance for Irish Organisations</title>
+  <meta name="description" content="SafeAI helps Irish sole traders and micro-businesses comply with EU AI Act Article 4 in under an hour. Free AI Risk Checker. Templates from €19. All materials available in Polish." />
+  <link rel="canonical" href="https://safeai.ie/" />
+  <link rel="alternate" hreflang="en-IE" href="https://safeai.ie/" />
+  <link rel="alternate" hreflang="pl" href="https://safeai.ie/pl/" />
+  <link rel="alternate" hreflang="x-default" href="https://safeai.ie/" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://safeai.ie/" />
+  <meta property="og:title" content="SafeAI — EU AI Act Compliance for Irish Businesses" />
+  <meta property="og:description" content="Article 4 has been enforceable since 2 February 2025. SafeAI helps Irish sole traders comply in under an hour. Templates from €19." />
+  <meta property="og:image" content="https://safeai.ie/safeai-logo.png" />
+  <meta property="og:locale" content="en_IE" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SafeAI — EU AI Act Compliance for Irish Businesses" />
+  <meta name="twitter:description" content="Article 4 has been enforceable since 2 February 2025. SafeAI helps Irish sole traders comply in under an hour. Templates from €19." />
+  <meta name="twitter:image" content="https://safeai.ie/safeai-logo.png" />
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://safeai.ie/#organization",
+        "name": "SafeAI",
+        "url": "https://safeai.ie/",
+        "logo": "https://safeai.ie/safeai-logo.png",
+        "description": "SafeAI provides EU AI Act compliance services for Irish sole traders and micro-businesses.",
+        "email": "marcela@safeai.ie",
+        "address": { "@type": "PostalAddress", "addressLocality": "Cork", "addressCountry": "IE" },
+        "founder": { "@type": "Person", "name": "Marcela", "nationality": "Polish" },
+        "sameAs": ["https://www.facebook.com/SafeAI.Ireland/", "https://www.instagram.com/safeai.ireland"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://safeai.ie/#website",
+        "url": "https://safeai.ie/",
+        "name": "SafeAI",
+        "publisher": { "@id": "https://safeai.ie/#organization" },
+        "inLanguage": ["en-IE", "pl"]
+      },
+      {
+        "@type": "ItemList",
+        "name": "SafeAI Products",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "2-Minute AI Risk Check", "description": "Free 8-question interactive quiz that scores Article 4 compliance exposure.", "url": "https://safeai.ie/#quiz" },
+          { "@type": "ListItem", "position": 2, "name": "Sole Trader AI Compliance Pack", "description": "Templates to achieve Article 4 compliance in under an hour. €19 one-time.", "url": "https://safeai.ie/#products" },
+          { "@type": "ListItem", "position": 3, "name": "EU AI Act Compliance Course", "description": "Five short videos, quiz, and printable certificate. €69 one-time.", "url": "https://safeai.ie/#products" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Does the EU AI Act apply to small businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. There is no SME exemption. If you or your staff use AI tools commercially, Article 4 applies. It has been enforceable since 2 February 2025." } },
+          { "@type": "Question", "name": "What is the penalty for not complying with Article 4?", "acceptedAnswer": { "@type": "Answer", "text": "Up to €7.5 million or 1.5% of annual global turnover. For small businesses, regulators are more likely to issue enforcement notices first and request documentation." } },
+          { "@type": "Question", "name": "Is SafeAI legal advice?", "acceptedAnswer": { "@type": "Answer", "text": "No. SafeAI provides general information and templates. For legal advice, consult a solicitor." } },
+          { "@type": "Question", "name": "Are materials available in Polish?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. All products and the full website are available in Polish at safeai.ie/pl/" } }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/png" href="safeai-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -54,6 +118,7 @@ function App() {
       <OfficialResourcesSection />
       {tweaks.showBlog && <BlogSection />}
       <AboutSection />
+      <PolskiSection />
       <FAQSection />
       <CTAStrip />
       <NewsletterSection />

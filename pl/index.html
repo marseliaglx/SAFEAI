@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeAI — Zgodność z AI Act dla polskich firm w Irlandii · od €19</title>
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://safeai.ie/pl/" />
+  <link rel="alternate" hreflang="pl" href="https://safeai.ie/pl/" />
+  <link rel="alternate" hreflang="en-IE" href="https://safeai.ie/" />
+  <link rel="alternate" hreflang="x-default" href="https://safeai.ie/" />
+
+  <meta name="description" content="Zgodność z unijnym AI Act dla polskich firm w Irlandii. Artykuł 4 obowiązuje od 2 lutego 2025. Szablony dokumentów od €19, jednorazowo. Zbudowane przez Marcelę w Irlandii." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://safeai.ie/pl/" />
+  <meta property="og:title" content="SafeAI — Zgodność z AI Act dla polskich firm w Irlandii" />
+  <meta property="og:description" content="AI compliance po polsku dla polskich firm w Irlandii. Szablony dokumentów od €19, jednorazowo. Artykuł 4 pokryty." />
+  <meta property="og:image" content="https://safeai.ie/safeai-logo.png" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_IE" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SafeAI — Zgodność z AI Act dla polskich firm w Irlandii" />
+  <meta name="twitter:description" content="AI compliance po polsku dla polskich firm w Irlandii. Szablony dokumentów od €19, jednorazowo." />
+  <meta name="twitter:image" content="https://safeai.ie/safeai-logo.png" />
+
+  <link rel="icon" type="image/png" href="../safeai-logo.png" />
+
+  <!-- Poppins — same font as main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- React + Babel via CDN -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- JSON-LD Structured Data (Polish) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://safeai.ie/pl/",
+        "url": "https://safeai.ie/pl/",
+        "name": "SafeAI — Zgodność z AI Act dla polskich firm w Irlandii",
+        "inLanguage": "pl",
+        "isPartOf": { "@id": "https://safeai.ie/#website" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Czy unijny AI Act dotyczy małych firm?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Tak. Nie ma żadnego zwolnienia dla MŚP. Artykuł 4 obowiązuje od 2 lutego 2025 i dotyczy każdej firmy zatrudniającej pracowników używających AI w kontekście komercyjnym." }
+          },
+          {
+            "@type": "Question",
+            "name": "Co grozi za brak zgodności z Artykułem 4?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Do 7,5 mln EUR lub 1,5% rocznego globalnego obrotu. W praktyce regulatorzy najpierw wysyłają zawiadomienia i proszą o dokumentację." }
+          },
+          {
+            "@type": "Question",
+            "name": "Czy materiały są dostępne po polsku?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Tak. Wszystkie produkty i pełna strona internetowa są dostępne w języku polskim." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    :root { --teal: #1B9AAA; --navy: #1B3A6B; --cream: #F4F7F9; --charcoal: #3F4B56; --muted: #7A8590; }
+
+    .pl-nav { background: #fff; border-bottom: 1px solid #E5EAF0; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .pl-nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .pl-nav-logo img { height: 34px; }
+    .pl-nav-logo span { font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; }
+    .pl-nav-links { display: flex; align-items: center; gap: 24px; }
+    .pl-nav-links a { font-size: 14px; color: var(--charcoal); text-decoration: none; font-weight: 500; }
+    .pl-nav-links a:hover { color: var(--teal); }
+    .pl-lang-pill { font-size: 12px; font-weight: 700; color: #fff; background: var(--teal); border: 1.5px solid var(--teal); border-radius: 20px; padding: 5px 14px; text-decoration: none; letter-spacing: 0.04em; }
+    .pl-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: #fff; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; padding: 14px 28px; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; transition: background 0.15s; }
+    .pl-btn:hover { background: #147a87; }
+    .pl-btn-outline { background: transparent; border: 2px solid var(--teal); color: var(--teal); }
+    .pl-btn-outline:hover { background: var(--teal); color: #fff; }
+    .pl-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin: 0 0 12px; }
+    .pl-card { background: #fff; border-radius: 12px; border: 1px solid #E5EAF0; padding: 32px; }
+    .pl-check { color: var(--teal); margin-right: 10px; flex-shrink: 0; }
+    .faq-item { border-bottom: 1px solid #E5EAF0; }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--charcoal); background: none; border: none; width: 100%; text-align: left; font-family: 'Poppins', sans-serif; gap: 16px; }
+    .faq-q:hover { color: var(--teal); }
+    .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; padding-bottom: 18px; }
+    @media (max-width: 640px) {
+      .pl-nav-links { display: none; }
+      .pl-hero-grid { grid-template-columns: 1fr !important; }
+      .pl-products-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+const T = {
+  teal:      '#1B9AAA',
+  tealLight: '#E6F4F6',
+  tealDark:  '#147a87',
+  navy:      '#1B3A6B',
+  navyDark:  '#122849',
+  charcoal:  '#3F4B56',
+  ink:       '#2D3640',
+  muted:     '#7A8590',
+  cream:     '#F4F7F9',
+  white:     '#FFFFFF',
+};
+
+/* ── FAQ ── */
+function FaqItem({ q, a }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div className="faq-item">
+      <button className="faq-q" onClick={() => setOpen(o => !o)}>
+        <span>{q}</span>
+        <span style={{ fontSize: 22, color: T.teal, flexShrink: 0 }}>{open ? '−' : '+'}</span>
+      </button>
+      {open && <div className="faq-a">{a}</div>}
+    </div>
+  );
+}
+
+/* ── App ── */
+function App() {
+  return (
+    <>
+      {/* ── Navbar ── */}
+      <nav className="pl-nav">
+        <a href="/" className="pl-nav-logo">
+          <img src="../safeai-logo.png" alt="SafeAI logo" />
+          <span>SafeAI</span>
+        </a>
+        <div className="pl-nav-links">
+          <a href="#produkty">Produkty</a>
+          <a href="#o-mnie">O mnie</a>
+          <a href="#faq">FAQ</a>
+          <a href="/" lang="en" className="pl-lang-pill" style={{ background: 'transparent', color: T.teal, border: `1.5px solid ${T.teal}` }}>English</a>
+          <a href="#produkty" className="pl-btn" style={{ padding: '9px 20px', fontSize: 13 }}>Kup pakiet</a>
+        </div>
+      </nav>
+
+      {/* ── Hero ── */}
+      <section style={{ background: T.navy, padding: '72px 24px 80px', color: T.white }}>
+        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+          <div className="pl-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+            <div>
+              <p className="pl-eyebrow">Po polsku · Dla polskich firm w Irlandii</p>
+              <h1 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 700, lineHeight: 1.2, margin: '0 0 20px', color: T.white }}>
+                Unijny AI Act dotyczy Twojej firmy w Irlandii.
+              </h1>
+              <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, marginBottom: 32 }}>
+                Artykuł 4 obowiązuje od <strong style={{ color: T.white }}>2 lutego 2025</strong>. Jeśli Ty lub Twoi pracownicy używacie ChatGPT, Copilot, Canva AI lub podobnych narzędzi w pracy — musisz to udokumentować. SafeAI pomaga Ci to zrobić w mniej niż godzinę.
+              </p>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <a href="#produkty" className="pl-btn">Zobacz pakiety</a>
+                <a href="#quiz" className="pl-btn pl-btn-outline" style={{ borderColor: 'rgba(255,255,255,0.4)', color: T.white }}>
+                  Sprawdź ryzyko — bezpłatnie
+                </a>
+              </div>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 16, padding: 32, border: '1px solid rgba(255,255,255,0.1)' }}>
+              <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: T.teal, marginBottom: 20 }}>
+                W pakiecie otrzymasz
+              </p>
+              {[
+                'Polityka Dopuszczalnego Użycia AI (szablon AUP)',
+                'Dziennik szkoleń z Artykułu 4 (wymagany dowód)',
+                'Certyfikaty ukończenia szkolenia dla pracowników',
+                'Jednostronicowe podsumowanie zgodności',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 14 }}>
+                  <span className="pl-check" style={{ color: T.teal }}>✓</span>
+                  <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5 }}>{item}</span>
+                </div>
+              ))}
+              <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+                <span style={{ fontSize: 28, fontWeight: 700, color: T.white }}>€19</span>
+                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginLeft: 8 }}>· jednorazowo · bez subskrypcji</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Social Proof ── */}
+      <section style={{ background: T.tealLight, padding: '20px 24px' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center', justifyContent: 'center' }}>
+          {['Artykuł 4 od 2 lutego 2025', 'Brak zwolnienia dla MŚP', 'Wszystko po polsku', 'Kara do 7,5 mln EUR'].map((t, i) => (
+            <span key={i} style={{ fontSize: 12, fontWeight: 600, color: T.navy, background: T.white, border: `1px solid ${T.tealLight}`, borderRadius: 20, padding: '5px 14px' }}>{t}</span>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Problem ── */}
+      <section style={{ background: T.cream, padding: '72px 24px' }}>
+        <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <p className="pl-eyebrow">Dlaczego to ważne</p>
+          <h2 style={{ fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 700, color: T.navy, marginBottom: 20 }}>
+            Wielu irlandzkich właścicieli firm jeszcze o tym nie wie.
+          </h2>
+          <p style={{ fontSize: 15, color: T.charcoal, lineHeight: 1.8, marginBottom: 16 }}>
+            Unijny AI Act (Rozporządzenie 2024/1689) wchodzi w życie stopniowo od sierpnia 2024. <strong>Artykuł 4</strong> — który wymaga udokumentowanej wiedzy o AI dla wszystkich pracowników używających narzędzi AI w kontekście komercyjnym — obowiązuje od <strong>2 lutego 2025</strong>.
+          </p>
+          <p style={{ fontSize: 15, color: T.charcoal, lineHeight: 1.8 }}>
+            Jeśli Twoja firma używa ChatGPT, Copilot, Gemini, Canva AI lub funkcji AI w oprogramowaniu księgowym czy rezerwacyjnym — jesteś <em>podmiotem wdrażającym</em> i musisz udokumentować zgodność. SafeAI dostarcza tę dokumentację.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Quiz ── */}
+      <section id="quiz" style={{ background: T.white, padding: '72px 24px' }}>
+        <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <p className="pl-eyebrow">Bezpłatne narzędzie</p>
+          <h2 style={{ fontSize: 'clamp(20px, 2.5vw, 32px)', fontWeight: 700, color: T.navy, marginBottom: 12 }}>
+            Sprawdź swoje ryzyko w 2 minuty
+          </h2>
+          <p style={{ fontSize: 15, color: T.charcoal, lineHeight: 1.7, marginBottom: 32 }}>
+            8 pytań. Wynik natychmiast — bez podawania e-maila. Dowiedz się, gdzie są Twoje luki i co zrobić, żeby je wypełnić.
+          </p>
+          <a href="/#quiz" className="pl-btn">Uruchom bezpłatny quiz (EN)</a>
+          <p style={{ fontSize: 13, color: T.muted, marginTop: 12 }}>Quiz jest w języku angielskim. Wersja polska wkrótce.</p>
+        </div>
+      </section>
+
+      {/* ── Products ── */}
+      <section id="produkty" style={{ background: T.cream, padding: '72px 24px' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 48 }}>
+            <p className="pl-eyebrow">Produkty</p>
+            <h2 style={{ fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 700, color: T.navy, marginBottom: 12 }}>
+              Trzy produkty. Jeden cel: zgodność z Artykułem 4.
+            </h2>
+          </div>
+          <div className="pl-products-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+            {/* Free quiz */}
+            <div className="pl-card">
+              <p style={{ fontSize: 12, fontWeight: 700, color: T.teal, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>Bezpłatnie</p>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: T.navy, marginBottom: 12 }}>Quiz: ocena ryzyka AI</h3>
+              <p style={{ fontSize: 14, color: T.muted, lineHeight: 1.7, marginBottom: 20 }}>
+                8 pytań, które pokazują Twoje narażenie na Artykuł 4. Wynik natychmiast. Bez e-maila.
+              </p>
+              <a href="/#quiz" className="pl-btn pl-btn-outline" style={{ fontSize: 14 }}>Uruchom quiz</a>
+            </div>
+            {/* Pack — featured */}
+            <div className="pl-card" style={{ border: `2px solid ${T.teal}`, position: 'relative' }}>
+              <span style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: T.teal, color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '4px 14px', borderRadius: 20 }}>Najpopularniejszy</span>
+              <p style={{ fontSize: 12, fontWeight: 700, color: T.teal, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>€19 · jednorazowo</p>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: T.navy, marginBottom: 12 }}>Pakiet zgodności dla jednoosobowych firm</h3>
+              <p style={{ fontSize: 14, color: T.muted, lineHeight: 1.7, marginBottom: 20 }}>
+                Polityka AUP, dziennik szkoleń z Artykułu 4, certyfikaty dla pracowników i podsumowanie zgodności. Gotowe w godzinę.
+              </p>
+              <a href="#" className="pl-btn" style={{ fontSize: 14 }}>Kup pakiet — €19</a>
+            </div>
+            {/* Course */}
+            <div className="pl-card">
+              <p style={{ fontSize: 12, fontWeight: 700, color: T.teal, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>€69 · jednorazowo</p>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: T.navy, marginBottom: 12 }}>Kurs zgodności z EU AI Act</h3>
+              <p style={{ fontSize: 14, color: T.muted, lineHeight: 1.7, marginBottom: 20 }}>
+                Pięć krótkich filmów (łącznie poniżej godziny), quiz i certyfikat dla każdego pracownika. Można obejrzeć na telefonie podczas przerwy.
+              </p>
+              <a href="#" className="pl-btn pl-btn-outline" style={{ fontSize: 14 }}>Kup kurs — €69</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── About Marcela ── */}
+      <section id="o-mnie" style={{ background: T.navy, padding: '72px 24px', color: T.white }}>
+        <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <p className="pl-eyebrow">O mnie</p>
+          <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: T.white, marginBottom: 20 }}>
+            Cześć, jestem Marcela.
+          </h2>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: 16 }}>
+            Jestem Polką mieszkającą w Cork w Irlandii. Zbudowałam SafeAI, bo widziałam, że wiele polskich firm w Irlandii nie wiedziało nawet o AI Act — a kary za brak zgodności mogą być bardzo poważne.
+          </p>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, marginBottom: 32 }}>
+            SafeAI to nie kancelaria prawna i nie doradztwo. To praktyczne szablony i krótkie szkolenie, które możesz zrobić sam — w języku, który rozumiesz.
+          </p>
+          <a href="mailto:marcela@safeai.ie" className="pl-btn pl-btn-outline" style={{ borderColor: 'rgba(255,255,255,0.4)', color: T.white }}>
+            Napisz do mnie: marcela@safeai.ie
+          </a>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section id="faq" style={{ background: T.cream, padding: '72px 24px' }}>
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+            <p className="pl-eyebrow">FAQ</p>
+            <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: T.navy }}>Najczęstsze pytania</h2>
+          </div>
+          <FaqItem
+            q="Czy unijny AI Act dotyczy mojej małej firmy?"
+            a="Tak. Nie ma żadnego zwolnienia dla MŚP. Jeśli Ty lub Twoi pracownicy używacie narzędzi AI w celach komercyjnych, Artykuł 4 Cię dotyczy — i obowiązuje od 2 lutego 2025."
+          />
+          <FaqItem
+            q="Używam tylko sporadycznie ChatGPT. Czy naprawdę potrzebuję tego dokumentu?"
+            a="Tak. Nawet sporadyczne korzystanie z ChatGPT, Gemini, Copilot czy Canva AI w pracy to „używanie AI w kontekście komercyjnym" według unijnego AI Act. Artykuł 4 wymaga udokumentowanej wiedzy o AI — bez względu na intensywność użytkowania."
+          />
+          <FaqItem
+            q="Co grozi za brak zgodności z Artykułem 4?"
+            a="Do 7,5 mln EUR lub 1,5% rocznego globalnego obrotu za naruszenia Artykułu 4. W praktyce regulatorzy najpierw wysyłają zawiadomienia i proszą o dokumentację. SafeAI dostarcza tę dokumentację."
+          />
+          <FaqItem
+            q="Czy SafeAI to kancelaria prawna?"
+            a="Nie. SafeAI dostarcza ogólnych informacji i szablonów. W przypadku pytań prawnych dotyczących Twojej konkretnej sytuacji skonsultuj się z radcą prawnym lub solicytorem."
+          />
+          <FaqItem
+            q="Czy certyfikat z kursu to oficjalne uprawnienie?"
+            a="To dowód odbycia szkolenia z zakresu wiedzy o AI — dokładnie tego wymaga Artykuł 4. Nie jest to regulowany certyfikat zawodowy."
+          />
+          <FaqItem
+            q="Czy wszystkie materiały są po polsku?"
+            a="Tak. Wszystkie produkty, szablony i pełna strona internetowa są dostępne w języku polskim. SafeAI zostało stworzone z myślą o polskich przedsiębiorcach w Irlandii."
+          />
+          <FaqItem
+            q="Jak SafeAI różni się od Agentive.ie?"
+            a="Agentive prowadzi 4-tygodniowe projekty doradcze dla firm z 50+ pracownikami. SafeAI jest przeznaczone dla firm 1–10 osobowych, w cenie €19 zamiast €2 000–€5 000."
+          />
+        </div>
+      </section>
+
+      {/* ── CTA Strip ── */}
+      <section style={{ background: T.teal, padding: '52px 24px', textAlign: 'center' }}>
+        <div style={{ maxWidth: 640, margin: '0 auto' }}>
+          <h2 style={{ fontSize: 'clamp(20px, 2.5vw, 30px)', fontWeight: 700, color: T.white, marginBottom: 12 }}>
+            Gotowy, żeby być zgodny z Artykułem 4?
+          </h2>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', marginBottom: 28 }}>
+            Pobierz pakiet za €19 i miej to za sobą w godzinę.
+          </p>
+          <a href="#produkty" className="pl-btn" style={{ background: T.white, color: T.teal, fontWeight: 700 }}>
+            Kup pakiet — €19
+          </a>
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer style={{ background: T.navyDark, padding: '40px 24px 24px', color: 'rgba(255,255,255,0.5)' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: 24, marginBottom: 32 }}>
+            <div>
+              <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 8 }}>
+                <img src="../safeai-logo.png" alt="SafeAI logo" style={{ height: 28 }} />
+                <span style={{ fontSize: 17, fontWeight: 700, color: T.white }}>SafeAI</span>
+              </a>
+              <p style={{ fontSize: 13, margin: 0, lineHeight: 1.6 }}>EU AI Act compliance dla polskich firm w Irlandii.</p>
+            </div>
+            <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+              <div>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 10 }}>Strona</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <a href="/#quiz" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Quiz ryzyka</a>
+                  <a href="#produkty" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Produkty</a>
+                  <a href="#faq" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>FAQ</a>
+                  <a href="/" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>English version</a>
+                </div>
+              </div>
+              <div>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 10 }}>Kontakt</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <a href="mailto:marcela@safeai.ie" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>marcela@safeai.ie</a>
+                  <a href="https://www.facebook.com/SafeAI.Ireland/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Facebook</a>
+                  <a href="https://www.instagram.com/safeai.ireland" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Instagram</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 20, display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 12 }}>
+            <p style={{ fontSize: 12, margin: 0 }}>© 2025 SafeAI.ie · Cork, Irlandia</p>
+            <div style={{ display: 'flex', gap: 16 }}>
+              <a href="../privacy.html" style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Polityka prywatności</a>
+              <a href="../terms.html" style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Regulamin</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

@@ -232,6 +232,15 @@ function Navbar({ tweaks }) {
               onMouseLeave={function(e) { e.target.style.color = T.charcoal; }}
             >{l.label}</a>
           ); })}
+          <a href="/pl/" lang="pl" aria-label="Wersja polska" style={{
+            fontSize: 12, fontWeight: 700, color: T.teal, textDecoration: 'none',
+            border: `1.5px solid ${T.teal}`, borderRadius: 20, padding: '5px 14px',
+            letterSpacing: '0.04em', transition: 'background 0.15s, color 0.15s',
+          }}
+          onMouseEnter={function(e) { e.currentTarget.style.background = T.teal; e.currentTarget.style.color = '#fff'; }}
+          onMouseLeave={function(e) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = T.teal; }}>
+            Polski
+          </a>
           <a href="#booking" className="sa-btn-primary" style={{ fontSize: 14, padding: '10px 20px' }}>
             Book a call
           </a>
@@ -253,6 +262,7 @@ function Navbar({ tweaks }) {
           {links.map(function(l) { return (
             <a key={l.label} href={l.href} className="sa-mobile-link" onClick={closeMobile}>{l.label}</a>
           ); })}
+          <a href="/pl/" className="sa-mobile-link" lang="pl" onClick={closeMobile} style={{ color: T.teal }}>Polski</a>
           <a href="#booking" className="sa-btn-primary" style={{ display: 'inline-flex', marginTop: 16, fontSize: 15, padding: '13px 24px' }} onClick={closeMobile}>Book a call</a>
         </div>
       )}
@@ -995,12 +1005,14 @@ function FAQSection() {
   const R = React;
   const [open, setOpen] = R.useState(null);
   const faqs = [
-    { q: 'Do I actually have EU AI Act obligations as a small business?', a: 'Most likely, yes. If you use AI tools commercially — including general-purpose tools like ChatGPT — the EU AI Act imposes obligations on you. The most immediate is Article 4, which requires AI literacy for all staff using AI in their work. SafeAI provides general information and training; for legal advice specific to your situation, consult a solicitor.' },
-    { q: 'Is SafeAI a law firm?', a: 'No. SafeAI is an AI awareness and training service — not a law firm, not a compliance auditor, and not a GDPR consultant. Marcela helps organisations understand what AI tools they use, what the EU AI Act says about AI literacy, and how to put basic safe-use practices in place. For legal advice on your specific situation, you need a solicitor.' },
+    { q: 'Does the EU AI Act really apply to my small business?', a: 'Yes. If you or your staff use any tool with AI in it — ChatGPT, Copilot, Gemini, AI features in your booking system, AI photo retouching, AI in your accounting software — the EU AI Act applies. There is no SME exemption. Article 4 has been enforceable since 2 February 2025.' },
+    { q: 'I only use ChatGPT occasionally. Do I really need this?', a: "If you use it for anything that touches client data, customer communication, marketing copy, or business decisions — yes. Article 4 requires you to demonstrate AI literacy among your staff. \"Occasionally\" doesn't exempt you; documentation does." },
+    { q: 'Is SafeAI a law firm? Is this legal advice?', a: "No, and no. SafeAI is an AI awareness and training service — not a law firm. Marcela helps organisations understand what AI tools they use, what the EU AI Act says about AI literacy, and how to put basic safe-use practices in place. For legal advice specific to your situation, consult a solicitor." },
     { q: 'How long does a workshop take?', a: '2.5 hours, on-site or remote. We work with teams of up to 20 people. Your team maps every AI tool in use, discusses safe practices, and agrees a draft Acceptable Use Policy to build on together.' },
-    { q: 'What if I only use ChatGPT occasionally?', a: "Even occasional use can create obligations, particularly around data protection (GDPR) and transparency. The EU AI Act's Article 4 AI literacy requirement applies to anyone using AI in a commercial context — there's no minimum usage threshold." },
-    { q: 'Do you work with schools and community organisations?', a: 'Yes — education and community organisations are two of our three core audiences. We have a specific guide for educational settings (primary, post-primary, and further education) and experience working with non-profits and GAA clubs.' },
-    { q: 'Can I get something for free before committing?', a: "Absolutely. Download the free Irish SME AI Risk Checklist or the EU AI Act field guide from the Free Tools section. You'll get a practical sense of where your organisation stands with no obligation." },
+    { q: 'How is SafeAI different from ComplianceKit.ie?', a: "ComplianceKit is GDPR software — different regulation, different model (monthly subscription). SafeAI covers the EU AI Act specifically, with one-time purchases instead of subscriptions. If you need both, buy both. They don't overlap." },
+    { q: 'How is SafeAI different from Agentive.ie?', a: "Agentive delivers 4-week consulting engagements for companies with 50+ staff. SafeAI is for businesses too small for that — sole traders and micro-SMEs. Different segment, different price, same regulation." },
+    { q: "What's the actual penalty for not complying with Article 4?", a: "Up to €7.5 million or 1.5% of annual global turnover, whichever is higher. In practice, regulators are more likely to issue enforcement notices and request documentation first. The fine cap exists to make the regulation taken seriously." },
+    { q: 'Czy materiały są dostępne po polsku? (Are materials available in Polish?)', a: 'Tak — SafeAI jest dostępny po polsku. Jestem Polką mieszkającą w Irlandii i pisałam te materiały z myślą o polskich przedsiębiorcach prowadzących firmy w Irlandii. Visit safeai.ie/pl/ for the full Polish version.' },
   ];
 
   return (
@@ -1027,6 +1039,59 @@ function FAQSection() {
           <a href="faq.html" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, fontWeight: 600, color: T.teal, textDecoration: 'none' }}>
             See all 49 questions &rarr;
           </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Polski Section ── */
+function PolskiSection() {
+  return (
+    <section id="polski" lang="pl" style={{ background: T.navy, padding: '80px 24px' }}>
+      <div style={{ maxWidth: 960, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 48, alignItems: 'center' }}>
+          <div>
+            <p className="sa-eyebrow" style={{ color: T.teal }}>Po polsku · For Polish-speaking businesses</p>
+            <h2 style={{ fontSize: 'clamp(24px, 3.5vw, 36px)', fontWeight: 700, color: T.white, marginBottom: 16, textWrap: 'balance' }}>
+              AI compliance dla polskich firm w Irlandii.
+            </h2>
+            <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', lineHeight: 1.85, marginBottom: 14 }}>
+              Jestem Marcela. Pomagam polskim przedsiębiorcom w Irlandii spełnić wymogi unijnego AI Act bez prawników i bez konsultantów za €5,000.
+            </p>
+            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.85, marginBottom: 28 }}>
+              Prowadzisz salon kosmetyczny? Fryzjera? Sklep? Firmę budowlaną? Jeśli ty lub twoi pracownicy używacie ChatGPT, Copilot lub Gemini — Artykuł 4 dotyczy ciebie od 2 lutego 2025 roku.
+            </p>
+            <a href="/pl/" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: T.teal, color: '#fff', fontFamily: 'Poppins, sans-serif',
+              fontWeight: 600, fontSize: 15, padding: '14px 26px', borderRadius: 6,
+              textDecoration: 'none', transition: 'background 0.18s',
+            }}
+            onMouseOver={function(e) { e.currentTarget.style.background = T.tealDark; }}
+            onMouseOut={function(e) { e.currentTarget.style.background = T.teal; }}>
+              Pełna wersja po polsku <Icon.Arrow size={15} color="#fff" />
+            </a>
+          </div>
+          <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 12, padding: '28px 28px 24px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <p style={{ fontSize: 12, fontWeight: 700, color: T.teal, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
+              Co zawiera pakiet (€19)
+            </p>
+            {[
+              'Szablon Polityki Akceptowalnego Użytkowania AI',
+              'Rejestr szkoleń zgodny z Artykułem 4',
+              'Formularz podpisania przez pracowników',
+              'Jednostronicowe podsumowanie zgodności',
+            ].map(function(item, i) { return (
+              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 14 }}>
+                <Icon.Check size={18} />
+                <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>{item}</span>
+              </div>
+            ); })}
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', marginTop: 4, lineHeight: 1.6 }}>
+              Wypełnij, podpisz, schowaj do segregatora. Gotowe.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -1261,5 +1326,5 @@ Object.assign(window, {
   QuizSection, ServicesSection, FreeToolsSection, GuidesSection,
   OfficialResourcesSection, BlogSection, AboutSection, FAQSection, CTAStrip, Footer,
   SocialProofBar, BookingModal, CookieBanner,
-  WhatsAppButton, NewsletterSection
+  WhatsAppButton, NewsletterSection, PolskiSection
 });
