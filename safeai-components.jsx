@@ -112,6 +112,12 @@ if (!document.getElementById('safeai-base')) {
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #c8d6de; border-radius: 3px; }
 
+    /* Hero image */
+    .sa-hero-img-wrap { flex: 0 1 360px; min-width: 200px; display: flex; justify-content: center; }
+    @media (max-width: 860px) {
+      .sa-hero-img-wrap { flex: 0 1 220px; min-width: 0; max-width: 220px; margin: 0 auto; }
+    }
+
     /* Mobile nav */
     .sa-nav-links { display: flex; align-items: center; gap: 32px; }
     .sa-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: ${T.charcoal}; }
@@ -232,9 +238,6 @@ function Navbar({ tweaks }) {
               onMouseLeave={function(e) { e.target.style.color = T.charcoal; }}
             >{l.label}</a>
           ); })}
-          <a href="#booking" className="sa-btn-primary" style={{ fontSize: 14, padding: '10px 20px' }}>
-            Book a call
-          </a>
         </div>
 
         {/* Hamburger (mobile only) */}
@@ -253,7 +256,7 @@ function Navbar({ tweaks }) {
           {links.map(function(l) { return (
             <a key={l.label} href={l.href} className="sa-mobile-link" onClick={closeMobile}>{l.label}</a>
           ); })}
-          <a href="#booking" className="sa-btn-primary" style={{ display: 'inline-flex', marginTop: 16, fontSize: 15, padding: '13px 24px' }} onClick={closeMobile}>Book a call</a>
+          <a href="mailto:marcela@safeai.ie" className="sa-btn-primary" style={{ display: 'inline-flex', marginTop: 16, fontSize: 15, padding: '13px 24px' }} onClick={closeMobile}>Get in touch</a>
         </div>
       )}
     </nav>
@@ -293,18 +296,15 @@ function HeroSection() {
               <a href="#quiz" className="sa-btn-primary" style={{ fontSize: 16, padding: '16px 32px' }}>
                 Take the 2-minute check
               </a>
-              <a href="#booking" className="sa-btn-outline" style={{ fontSize: 16, padding: '14px 32px', color: T.navy, borderColor: 'rgba(27,58,107,0.35)' }}>
-                Book a call with Marcela
-              </a>
             </div>
           </div>
 
-          <div style={{ flex: '0 1 420px', minWidth: 280, display: 'flex', justifyContent: 'center' }} aria-label="SafeAI brand mark">
-            <div style={{ width: '100%', maxWidth: 420, padding: '34px 26px', borderRadius: 26, background: 'rgba(255,255,255,0.78)', border: '1px solid rgba(27,58,107,0.08)', boxShadow: '0 24px 70px rgba(27,58,107,0.12)', backdropFilter: 'blur(4px)' }}>
+          <div className="sa-hero-img-wrap" aria-label="SafeAI brand mark">
+            <div style={{ width: '100%', padding: '24px 20px', borderRadius: 20, background: 'rgba(255,255,255,0.78)', border: '1px solid rgba(27,58,107,0.08)', boxShadow: '0 16px 48px rgba(27,58,107,0.10)', backdropFilter: 'blur(4px)' }}>
               <img
                 src="safeai-logo.png"
                 alt="SafeAI — AI Training & Compliance"
-                style={{ width: '100%', height: 'auto', display: 'block', filter: 'drop-shadow(0 14px 22px rgba(27,58,107,0.12))' }}
+                style={{ width: '100%', height: 'auto', display: 'block', filter: 'drop-shadow(0 10px 16px rgba(27,58,107,0.10))' }}
               />
             </div>
           </div>
@@ -817,7 +817,7 @@ function OfficialResourcesSection() {
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', maxWidth: 480, lineHeight: 1.7 }}>These tools tell you what the law requires. SafeAI turns that into practical training and a clear action plan — so your team knows what to do and you can demonstrate compliance with confidence.</p>
           </div>
           <a
-            href="#booking"
+            href="mailto:marcela@safeai.ie"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: T.teal, color: '#fff',
@@ -829,7 +829,7 @@ function OfficialResourcesSection() {
             onMouseOver={e => { e.currentTarget.style.opacity = '0.88'; }}
             onMouseOut={e => { e.currentTarget.style.opacity = '1'; }}
           >
-            Book a free call with Marcela <Icon.Arrow size={14} color="#fff" />
+            Get in touch <Icon.Arrow size={14} color="#fff" />
           </a>
         </div>
 
@@ -981,7 +981,7 @@ function AboutSection() {
             <p style={{ fontSize: 13, fontStyle: 'italic', color: T.teal }}>No jargon. No upselling. Practical guidance you can actually use.</p>
           </div>
           <div style={{ marginTop: 28, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#booking" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 26px' }}>Book a call with Marcela</a>
+            <a href="mailto:marcela@safeai.ie" className="sa-btn-primary" style={{ fontSize: 15, padding: '14px 26px' }}>Get in touch</a>
             <a href="#free-tools" className="sa-btn-ghost" style={{ fontSize: 14, border: `1.5px solid ${T.teal}`, borderRadius: 6, padding: '13px 22px' }}>Download a free guide</a>
           </div>
         </div>
@@ -1094,7 +1094,6 @@ function Footer() {
             <h4 style={{ fontSize: 13, fontWeight: 600, color: T.white, marginBottom: 14 }}>Contact</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <a href="mailto:marcela@safeai.ie" style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}>marcela@safeai.ie</a>
-              <a href="#booking" style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}>Book a call ↗</a>
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
               {[
